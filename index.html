@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- [PENDIENTE: definir meta description] -->
+  <title>Diagnóstico Familiar del Adolescente — Carla Romo Salcedo</title>
+
+  <!-- Google Fonts: Fraunces + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Lenis smooth scroll (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV — sticky, transparente → crema al scroll
+       EDITAR: destino del botón en href="#test"
+       ============================================================ -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <!-- EDITAR: logo en /assets/logo-nido.png (agregar manualmente al repo) -->
+      <a href="#" class="nav__logo" aria-label="Método NIDO">
+        <img src="/assets/logo-nido.png" alt="Método NIDO" height="40" class="nav__logo-img">
+      </a>
+      <!-- EDITAR: destino del botón CTA nav -->
+      <a href="#test" class="btn btn--nav">Test gratuito</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ============================================================
+         BLOQUE 1 — HERO
+         ============================================================ -->
+    <section class="hero" id="hero">
+      <!-- MOVIMIENTO 1: blob respirando (ver script.js) -->
+      <div class="hero__blob" aria-hidden="true">
+        <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+          <path d="M300,60 C400,60 520,130 520,260 C520,390 430,520 300,520 C170,520 80,400 80,270 C80,140 200,60 300,60 Z" fill="#3E8DA1" opacity="0.15"/>
+        </svg>
+      </div>
+
+      <div class="hero__content">
+        <!-- EDITAR: titular principal -->
+        <h1 class="hero__h1">Cuando algo le pase, ¿va a contártelo a <em>ti</em>?</h1>
+
+        <!-- EDITAR: subtítulo -->
+        <p class="hero__subtitulo">Antes de decidir si tu hijo necesita terapia, partamos por entender qué está pasando.</p>
+
+        <!-- EDITAR: cuerpo hero -->
+        <p class="hero__cuerpo">El Diagnóstico Familiar del Adolescente es un proceso clínico breve, de 3 sesiones, que te muestra cómo está hoy tu hijo o hija, qué está bloqueando la confianza en casa, y qué pasos concretos puedes dar para abrir esa puerta — antes de que la necesites con urgencia.</p>
+
+        <!-- EDITAR: href botón hero -->
+        <a href="#test" class="btn btn--primary">Empieza por el test gratuito (3 minutos)</a>
+        <p class="hero__microcopy">3 sesiones · informe escrito · plan personalizado</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOQUE 2 — PENSAMIENTOS
+         MARCA DE AGUA "nido": .b2__watermark (ver styles.css)
+         MOVIMIENTO 2: reveal escalonado de citas (ver script.js)
+         ============================================================ -->
+    <section class="b2-pensamientos" id="pensamientos">
+      <!-- MARCA DE AGUA B2 -->
+      <span class="b2__watermark" aria-hidden="true">nido</span>
+
+      <div class="b2__inner">
+        <!-- EDITAR: las 4 citas -->
+        <blockquote class="b2__cita b2__cita--izq">"No sé qué le pasa, antes éramos cercanos y ahora no me cuenta nada."</blockquote>
+        <blockquote class="b2__cita b2__cita--der">"Está todo el día encerrado y no sé si es la edad o algo más."</blockquote>
+        <blockquote class="b2__cita b2__cita--izq">"Le pregunto cómo le fue y solo dice 'bien'. No sé si creerle."</blockquote>
+        <blockquote class="b2__cita b2__cita--der">"Tengo miedo de no estar viendo algo importante."</blockquote>
+
+        <!-- EDITAR: cierre del bloque -->
+        <p class="b2__cierre">No estás fallando. Estás en una etapa que nadie nos enseñó a navegar.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOQUE 3 — FRASE PUENTE
+         MARCA DE AGUA "nido" PROTAGÓNICA: .b3__watermark (ver styles.css)
+         ============================================================ -->
+    <section class="b3-puente" id="puente">
+      <!-- MARCA DE AGUA B3 -->
+      <span class="b3__watermark" aria-hidden="true">nido</span>
+
+      <div class="b3__inner">
+        <!-- EDITAR: frase puente -->
+        <h2 class="b3__frase">Antes de decidir si tu hijo necesita terapia, partamos por entender qué está pasando.</h2>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOQUE 4 — POR QUÉ UN DIAGNÓSTICO
+         ============================================================ -->
+    <section class="b4-porque" id="porque">
+      <div class="b4__inner">
+
+        <!-- Sub-bloque I -->
+        <div class="b4__item">
+          <div class="b4__numero" aria-hidden="true">I</div>
+          <div class="b4__contenido">
+            <!-- EDITAR: h3 y párrafo sub-bloque I -->
+            <h3 class="b4__h3">Porque adivinar agota y los consejos genéricos no resuelven</h3>
+            <p class="b4__p">La mayoría de los padres llegan a consulta cuando el problema ya es grande. Y los libros, podcasts o consejos en redes asumen que ya sabes qué pasa en tu casa específicamente.</p>
+          </div>
+        </div>
+
+        <hr class="b4__sep" aria-hidden="true">
+
+        <!-- Sub-bloque II -->
+        <div class="b4__item">
+          <div class="b4__numero" aria-hidden="true">II</div>
+          <div class="b4__contenido">
+            <!-- EDITAR: h3 y párrafo sub-bloque II -->
+            <h3 class="b4__h3">Primero entendemos, después decidimos</h3>
+            <p class="b4__p">El Diagnóstico Familiar del Adolescente invierte el orden habitual: primero entendemos qué está pasando con tu hijo y con la comunicación familiar. Después decidimos juntos qué necesitas.</p>
+          </div>
+        </div>
+
+        <hr class="b4__sep" aria-hidden="true">
+
+        <!-- Sub-bloque III -->
+        <div class="b4__item">
+          <div class="b4__numero" aria-hidden="true">III</div>
+          <div class="b4__contenido">
+            <!-- EDITAR: h3 y párrafos sub-bloque III -->
+            <h3 class="b4__h3">Dos caminos posibles, ambos claros</h3>
+            <p class="b4__p">Para muchas familias, aplicar el plan personalizado que te entrego es suficiente para mover el clima en casa.</p>
+            <p class="b4__p">Para otras, el diagnóstico identifica que el adolescente necesita acompañamiento individual, que la familia se beneficiaría de un proceso más largo, o que hay señales que requieren atención especializada. En esos casos, te oriento hacia el siguiente paso.</p>
+            <p class="b4__p b4__p--bold">En ambos casos, dejas de adivinar.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOQUE 5 — LAS 3 SESIONES
+         MOVIMIENTO 4: trazado SVG en números (ver script.js)
+         ============================================================ -->
+    <section class="b5-sesiones" id="sesiones">
+      <div class="b5__inner">
+
+        <!-- EDITAR: título sección -->
+        <h2 class="b5__titulo">Las 3 sesiones</h2>
+
+        <!-- Sesión 1 -->
+        <div class="b5__sesion" data-sesion="1">
+          <div class="b5__num-wrap">
+            <span class="b5__num">01</span>
+            <!-- MOVIMIENTO 4: línea SVG que se dibuja al scroll -->
+            <svg class="b5__linea" viewBox="0 0 2 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <line x1="1" y1="0" x2="1" y2="80" stroke="#EA8672" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="b5__contenido">
+            <!-- EDITAR: título + duración sesión 1 -->
+            <div class="b5__sesion-header">
+              <h3 class="b5__sesion-titulo">Padres y adolescente</h3>
+              <span class="b5__duracion">60 min</span>
+            </div>
+            <!-- EDITAR: párrafo sesión 1 -->
+            <p class="b5__p">Comenzamos con los padres para ordenar lo que están viendo. Luego se suma tu hijo o hija (si lo desea), para presentar el proceso y observar la dinámica familiar en vivo. Esta primera sesión deja claro al adolescente que la siguiente es un espacio suyo.</p>
+          </div>
+        </div>
+
+        <!-- Sesión 2 -->
+        <div class="b5__sesion" data-sesion="2">
+          <div class="b5__num-wrap">
+            <span class="b5__num">02</span>
+            <svg class="b5__linea" viewBox="0 0 2 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <line x1="1" y1="0" x2="1" y2="80" stroke="#EA8672" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="b5__contenido">
+            <!-- EDITAR: título + duración sesión 2 -->
+            <div class="b5__sesion-header">
+              <h3 class="b5__sesion-titulo">Tu hijo o hija</h3>
+              <span class="b5__duracion">60 min</span>
+            </div>
+            <!-- EDITAR: párrafo sesión 2 -->
+            <p class="b5__p">Un espacio confidencial donde tu adolescente puede expresarse con libertad. Aquí escucho cómo está viviendo esta etapa, qué le preocupa, qué le cuesta decir en casa. Este es el momento que más cambia la mirada.</p>
+          </div>
+        </div>
+
+        <!-- Sesión 3 -->
+        <div class="b5__sesion" data-sesion="3">
+          <div class="b5__num-wrap">
+            <span class="b5__num">03</span>
+            <svg class="b5__linea" viewBox="0 0 2 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <line x1="1" y1="0" x2="1" y2="80" stroke="#EA8672" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="b5__contenido">
+            <!-- EDITAR: título + duración sesión 3 -->
+            <div class="b5__sesion-header">
+              <h3 class="b5__sesion-titulo">Devolución</h3>
+              <span class="b5__duracion">60 min, en dos tramos</span>
+            </div>
+            <!-- EDITAR: párrafo sesión 3 -->
+            <p class="b5__p">Primero 30 minutos con tu hijo o hija: este es su proceso y merece su devolución. Luego 30 minutos con los padres: entrega del informe escrito y recorrido por el plan de acción, con frases concretas y orientación clara sobre qué hacer y qué evitar.</p>
+          </div>
+        </div>
+
+        <!-- Informe escrito -->
+        <div class="b5__informe">
+          <!-- EDITAR: título informe -->
+          <h3 class="b5__informe-titulo">+ Informe escrito personalizado (4-6 páginas)</h3>
+          <!-- EDITAR: descripción informe -->
+          <p class="b5__informe-desc">Lectura del vínculo, patrones identificados, señales a observar y hoja de ruta.</p>
+        </div>
+
+        <!-- Datos clave -->
+        <div class="b5__datos">
+          <!-- EDITAR: datos clave del proceso -->
+          <div class="b5__dato">
+            <span class="b5__dato-valor">2 a 3 semanas</span>
+          </div>
+          <div class="b5__dato">
+            <span class="b5__dato-valor">Online</span>
+          </div>
+          <div class="b5__dato">
+            <span class="b5__dato-valor">$200.000 CLP</span>
+          </div>
+          <div class="b5__dato b5__dato--largo">
+            <span class="b5__dato-valor">50% al agendar · 50% antes de la devolución</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOQUE 6 — PARA QUIÉN ES / LÍMITE ÉTICO
+         ============================================================ -->
+    <section class="b6-paraquien" id="para-quien">
+      <div class="b6__inner">
+
+        <!-- EDITAR: h3 y párrafo introductorio -->
+        <h3 class="b6__h3">¿Es para tu familia?</h3>
+        <p class="b6__intro">Para padres con hijos entre 12 y 18 años que notan cambios que no saben cómo leer: aislamiento, irritabilidad, distancia, conflictos recurrentes o señales que los tienen preocupados.</p>
+
+        <!-- Caja "Importante" -->
+        <div class="b6__importante">
+          <div class="b6__alerta-icon" aria-hidden="true">
+            <!-- SVG alerta dibujado a mano -->
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="14" cy="14" r="12.5" stroke="#EA8672" stroke-width="1.5"/>
+              <line x1="14" y1="8" x2="14" y2="17" stroke="#EA8672" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="14" cy="20.5" r="1" fill="#EA8672"/>
+            </svg>
+          </div>
+          <div class="b6__importante-texto">
+            <!-- EDITAR: título y párrafo de la caja importante -->
+            <p class="b6__importante-titulo">Importante</p>
+            <p class="b6__importante-p">Este proceso no reemplaza atención de urgencia ni tratamiento especializado. Si en tu casa hay señales de riesgo inmediato — autolesiones, ideación suicida, violencia, abuso o consumo problemático — escríbeme directamente y te oriento hacia la derivación adecuada.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOQUE 7 — SOBRE CARLA
+         MARCA DE AGUA "nido": .b7__watermark (ver styles.css)
+         EDITAR: URL foto Carla abajo en img src (NO modificar la URL)
+         ============================================================ -->
+    <section class="b7-carla" id="sobre-carla">
+      <!-- MARCA DE AGUA B7 -->
+      <span class="b7__watermark" aria-hidden="true">nido</span>
+
+      <div class="b7__inner">
+
+        <!-- Foto Carla — 40% izquierda -->
+        <!-- ⚠️ EDITAR URL FOTO: cambiar solo este src si la imagen cambia -->
+        <div class="b7__foto-wrap">
+          <img
+            src="https://i.imgur.com/lr1ym9w.png"
+            alt="Carla Romo Salcedo, psicóloga clínica PUC"
+            class="b7__foto"
+            loading="lazy"
+          >
+        </div>
+
+        <!-- Contenido texto — 60% derecha -->
+        <div class="b7__texto">
+          <!-- EDITAR: subtítulo, nombre, bajada, credenciales, frase cierre -->
+          <p class="b7__subtitulo">Sobre Carla</p>
+          <h2 class="b7__nombre">Carla Romo Salcedo</h2>
+          <p class="b7__bajada">Psicóloga clínica · Pontificia Universidad Católica de Chile</p>
+          <p class="b7__bajada">Mamá de adolescentes</p>
+
+          <ul class="b7__credenciales">
+            <li>+25 años acompañando procesos humanos</li>
+            <li>Formación en prevención de bullying, depresión y suicidio adolescente</li>
+            <li>Certificación Programa PEERS</li>
+            <li>Creadora del Método NIDO®</li>
+          </ul>
+
+          <p class="b7__cierre">Diseñé este diagnóstico para que dejes de adivinar antes de que el problema sea grande.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOQUE 8 — CTA FINAL
+         MOVIMIENTO 5: gradiente animado (ver styles.css .b8-cta)
+         EDITAR: destino del botón en href="#test"
+         ============================================================ -->
+    <section class="b8-cta" id="cta-final">
+      <div class="b8__inner">
+        <!-- EDITAR: h2 y botón CTA final -->
+        <h2 class="b8__titulo">¿Lista para dejar de adivinar?</h2>
+        <!-- EDITAR: destino del botón CTA final -->
+        <a href="#test" class="btn btn--cta-final">Empieza por el test gratuito (3 minutos)</a>
+        <!-- EDITAR: microcopy CTA final -->
+        <p class="b8__microcopy">Te dice si lo que ves en casa es parte normal de la edad o si conviene mirar con más calma. Sin compromiso.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       EDITAR: email e Instagram
+       ============================================================ -->
+  <footer class="footer" id="footer">
+    <div class="footer__inner">
+      <!-- EDITAR: logo footer en /assets/logo-nido.png -->
+      <a href="#" class="footer__logo" aria-label="Método NIDO">
+        <img src="/assets/logo-nido.png" alt="Método NIDO" height="32" class="footer__logo-img">
+      </a>
+      <div class="footer__links">
+        <!-- EDITAR: email de contacto -->
+        <a href="mailto:carla.romo@conectarconsentido.com" class="footer__link">carla.romo@conectarconsentido.com</a>
+        <!-- EDITAR: usuario de Instagram -->
+        <a href="https://instagram.com/conectar_consentido" class="footer__link" target="_blank" rel="noopener noreferrer">@conectar_consentido</a>
+      </div>
+      <!-- [PENDIENTE: definir texto de copyright y política de privacidad] -->
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

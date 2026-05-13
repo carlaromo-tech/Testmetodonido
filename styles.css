@@ -1,0 +1,940 @@
+/* ============================================================
+   DESIGN TOKENS — colores, tipografías, espacios
+   ============================================================ */
+:root {
+  --color-navy:            #1E2D3D;
+  --color-navy-soft:       #2A3D52;
+  --color-turquesa:        #3E8DA1;
+  --color-turquesa-soft:   #5BA8BD;
+  --color-turquesa-pale:   #E8F1F3;
+  --color-coral:           #EA8672;
+  --color-coral-soft:      #F2A695;
+  --color-rosa:            #E07688;
+  --color-crema:           #FAF6F0;
+  --color-crema-warm:      #F5EDE2;
+  --color-blanco:          #FFFFFF;
+  --color-texto-principal: #1E2D3D;
+  --color-texto-suave:     #4A5B6E;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  --space-section: clamp(5rem, 10vw, 8rem);
+  --px-container:  clamp(1.5rem, 5vw, 4rem);
+  --max-content:   1200px;
+  --max-parrafo:   620px;
+  --max-cita:      480px;
+}
+
+/* ============================================================
+   RESET + BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-texto-principal);
+  background-color: var(--color-crema);
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.btn--nav {
+  background-color: var(--color-turquesa);
+  color: var(--color-blanco);
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+}
+
+.btn--nav:hover {
+  opacity: 0.88;
+}
+
+.btn--primary {
+  background-color: var(--color-navy);
+  color: var(--color-crema);
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.btn--primary:hover {
+  opacity: 0.88;
+  box-shadow: 0 4px 20px rgba(30, 45, 61, 0.18);
+}
+
+/* EDITAR: estilo botón CTA final */
+.btn--cta-final {
+  background-color: var(--color-crema);
+  color: var(--color-navy);
+  padding: 1.125rem 2.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.btn--cta-final:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  opacity: 0.95;
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: transparent;
+  transition: background-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Clase añadida por JS al pasar 100px de scroll */
+.nav--scrolled {
+  background-color: var(--color-crema);
+  box-shadow: 0 1px 0 rgba(30, 45, 61, 0.08);
+}
+
+.nav__inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  padding: 1.125rem var(--px-container);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__logo-img {
+  height: 40px;
+  width: auto;
+  /* Placeholder visual si el logo no se ha subido aún */
+  min-width: 80px;
+  background-color: transparent;
+}
+
+/* ============================================================
+   BLOQUE 1 — HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-crema);
+  padding: calc(var(--space-section) + 4rem) var(--px-container) var(--space-section);
+  overflow: hidden;
+}
+
+/* MOVIMIENTO 1: blob — ver script.js .hero__blob */
+.hero__blob {
+  position: absolute;
+  top: -5%;
+  right: -8%;
+  width: clamp(320px, 55vw, 640px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-content);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 760px;
+}
+
+/* EDITAR: h1 hero — Fraunces 400, navy */
+.hero__h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.12;
+  color: var(--color-navy);
+  margin-bottom: 1.75rem;
+}
+
+.hero__h1 em {
+  font-style: italic;
+}
+
+.hero__subtitulo {
+  font-family: var(--font-body);
+  font-size: clamp(1.0625rem, 1.8vw, 1.25rem);
+  font-weight: 400;
+  color: var(--color-texto-suave);
+  max-width: var(--max-parrafo);
+  margin-bottom: 1.5rem;
+  line-height: 1.65;
+}
+
+.hero__cuerpo {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  color: var(--color-texto-suave);
+  max-width: var(--max-parrafo);
+  margin-bottom: 2.5rem;
+  line-height: 1.75;
+}
+
+.hero__microcopy {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--color-texto-suave);
+  margin-top: 1rem;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   BLOQUE 2 — PENSAMIENTOS
+   MARCA DE AGUA B2: .b2__watermark
+   ============================================================ */
+.b2-pensamientos {
+  position: relative;
+  background-color: var(--color-turquesa-pale);
+  padding: var(--space-section) var(--px-container);
+  overflow: hidden;
+}
+
+/* MARCA DE AGUA B2 — "nido" grande, cortada por borde izquierdo */
+.b2__watermark {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 35vw;
+  color: #3E8DA1;
+  opacity: 0.06;
+  left: -10%;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  z-index: 0;
+}
+
+.b2__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-content);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* MOVIMIENTO 2: citas — opacity + translateY (ver script.js) */
+.b2__cita {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  color: var(--color-navy);
+  max-width: var(--max-cita);
+  line-height: 1.5;
+  opacity: 0; /* Initial state para GSAP */
+}
+
+/* Alternancia izq/der */
+.b2__cita--izq {
+  align-self: flex-start;
+  margin-left: 0;
+}
+
+.b2__cita--der {
+  align-self: flex-end;
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .b2__cita--izq {
+    margin-left: 0;
+    transform: translateX(0);
+  }
+  .b2__cita--der {
+    margin-right: 0;
+  }
+}
+
+/* Offset asimétrico en desktop */
+@media (min-width: 1024px) {
+  .b2__cita--izq {
+    margin-left: 0;
+  }
+  .b2__cita--der {
+    margin-right: 0;
+    align-self: flex-end;
+    transform: translateX(-30px);
+  }
+  .b2__cita--izq:nth-child(odd) {
+    transform: translateX(30px);
+  }
+}
+
+/* Cierre del bloque — Inter 500, navy */
+.b2__cierre {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1.0625rem;
+  color: var(--color-navy);
+  margin-top: 4rem;
+  max-width: var(--max-parrafo);
+  opacity: 0; /* Initial state para GSAP */
+}
+
+/* ============================================================
+   BLOQUE 3 — FRASE PUENTE
+   MARCA DE AGUA B3: .b3__watermark
+   ============================================================ */
+.b3-puente {
+  position: relative;
+  background-color: var(--color-navy);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: var(--space-section) var(--px-container);
+  overflow: hidden;
+}
+
+/* MARCA DE AGUA B3 — protagónica, cortada por borde derecho */
+.b3__watermark {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 45vw;
+  color: #2A3D52;
+  opacity: 0.4;
+  right: -15%;
+  bottom: -10%;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  z-index: 0;
+}
+
+.b3__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-content);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Frase puente — Fraunces 400 italic, crema */
+.b3__frase {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  color: var(--color-crema);
+  max-width: 800px;
+  text-align: center;
+  line-height: 1.25;
+}
+
+/* ============================================================
+   BLOQUE 4 — POR QUÉ UN DIAGNÓSTICO
+   ============================================================ */
+.b4-porque {
+  background-color: var(--color-crema);
+  padding: var(--space-section) var(--px-container);
+}
+
+.b4__inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+}
+
+.b4__item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding: 3rem 0;
+}
+
+@media (min-width: 1024px) {
+  .b4__item {
+    grid-template-columns: 160px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+}
+
+/* Números romanos — Fraunces 300, coral */
+.b4__numero {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(4rem, 8vw, 6rem);
+  color: var(--color-coral);
+  line-height: 1;
+  padding-top: 0.25rem;
+}
+
+.b4__h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  color: var(--color-navy);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.b4__p {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  color: var(--color-texto-suave);
+  max-width: var(--max-parrafo);
+  margin-bottom: 0.875rem;
+  line-height: 1.75;
+}
+
+.b4__p--bold {
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+/* Separador 1px navy 10% opacidad */
+.b4__sep {
+  border: none;
+  border-top: 1px solid rgba(30, 45, 61, 0.1);
+}
+
+/* ============================================================
+   BLOQUE 5 — LAS 3 SESIONES
+   MOVIMIENTO 4: líneas SVG en .b5__linea
+   ============================================================ */
+.b5-sesiones {
+  background-color: var(--color-blanco);
+  padding: var(--space-section) var(--px-container);
+}
+
+.b5__inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+}
+
+/* h2 alineado arriba izquierda */
+.b5__titulo {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-navy);
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.b5__sesion {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  .b5__sesion {
+    grid-template-columns: 88px 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.b5__num-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.25rem;
+}
+
+/* Números 01 02 03 — Fraunces 300, navy */
+.b5__num {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: var(--color-navy);
+  line-height: 1;
+}
+
+/* MOVIMIENTO 4: línea SVG — stroke-dasharray GSAP */
+.b5__linea {
+  width: 2px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+.b5__linea line {
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80; /* Empieza sin trazar, GSAP la anima */
+}
+
+.b5__sesion-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.b5__sesion-titulo {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  color: var(--color-navy);
+  line-height: 1.3;
+}
+
+.b5__duracion {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--color-turquesa);
+  white-space: nowrap;
+}
+
+.b5__p {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  color: var(--color-texto-suave);
+  max-width: var(--max-parrafo);
+  line-height: 1.75;
+}
+
+/* Informe escrito */
+.b5__informe {
+  border-top: 1px solid rgba(30, 45, 61, 0.08);
+  padding-top: 2.5rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+.b5__informe-titulo {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  color: var(--color-navy);
+  margin-bottom: 0.625rem;
+}
+
+.b5__informe-desc {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  color: var(--color-texto-suave);
+  max-width: var(--max-parrafo);
+}
+
+/* Datos clave — caja con borde turquesa */
+.b5__datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: 1px solid var(--color-turquesa);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.b5__dato {
+  flex: 1 1 120px;
+  padding: 1.25rem 1.75rem;
+  border-right: 1px solid rgba(62, 141, 161, 0.25);
+}
+
+.b5__dato:last-child {
+  border-right: none;
+}
+
+.b5__dato--largo {
+  flex: 2 1 240px;
+}
+
+.b5__dato-valor {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-navy);
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .b5__datos {
+    flex-direction: column;
+  }
+  .b5__dato {
+    border-right: none;
+    border-bottom: 1px solid rgba(62, 141, 161, 0.25);
+  }
+  .b5__dato:last-child {
+    border-bottom: none;
+  }
+}
+
+/* ============================================================
+   BLOQUE 6 — PARA QUIÉN ES / LÍMITE ÉTICO
+   ============================================================ */
+.b6-paraquien {
+  background-color: var(--color-crema-warm);
+  padding: var(--space-section) var(--px-container);
+}
+
+.b6__inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  max-width: 760px;
+}
+
+.b6__h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  color: var(--color-navy);
+  margin-bottom: 1.25rem;
+}
+
+.b6__intro {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  color: var(--color-texto-suave);
+  max-width: var(--max-parrafo);
+  line-height: 1.75;
+  margin-bottom: 3rem;
+}
+
+/* Caja "Importante" — borde izquierdo coral */
+.b6__importante {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  background-color: var(--color-blanco);
+  border-left: 4px solid var(--color-coral);
+  padding: 2.5rem;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 2px 16px rgba(30, 45, 61, 0.06);
+}
+
+.b6__alerta-icon {
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.b6__importante-titulo {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--color-coral);
+  margin-bottom: 0.625rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.b6__importante-p {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  color: var(--color-texto-suave);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   BLOQUE 7 — SOBRE CARLA
+   MARCA DE AGUA B7: .b7__watermark
+   ============================================================ */
+.b7-carla {
+  position: relative;
+  background-color: var(--color-navy);
+  padding: var(--space-section) var(--px-container);
+  overflow: hidden;
+}
+
+/* MARCA DE AGUA B7 — cortada por borde izquierdo */
+.b7__watermark {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 50vw;
+  color: #2A3D52;
+  opacity: 0.5;
+  left: -20%;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  z-index: 0;
+}
+
+.b7__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-content);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .b7__inner {
+    grid-template-columns: 40% 60%;
+    gap: 4rem;
+    align-items: start;
+  }
+}
+
+/* Foto — rectangular, editorial, sin border-radius */
+.b7__foto-wrap {
+  position: relative;
+}
+
+.b7__foto {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Contenido texto */
+.b7__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  color: var(--color-crema);
+}
+
+.b7__subtitulo {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  color: var(--color-turquesa-soft);
+  margin-bottom: 0.5rem;
+}
+
+.b7__nombre {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-crema);
+  margin-bottom: 1.25rem;
+  line-height: 1.15;
+}
+
+.b7__bajada {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: rgba(250, 246, 240, 0.7);
+  line-height: 1.6;
+}
+
+.b7__bajada + .b7__bajada {
+  margin-bottom: 2rem;
+}
+
+/* Credenciales — guion largo coral */
+.b7__credenciales {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  margin-top: 0.25rem;
+}
+
+.b7__credenciales li {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  color: rgba(250, 246, 240, 0.88);
+  line-height: 1.6;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+/* Guion largo coral como bullet */
+.b7__credenciales li::before {
+  content: '—';
+  color: var(--color-coral);
+  position: absolute;
+  left: 0;
+  font-weight: 400;
+}
+
+/* Frase de cierre — cursiva */
+.b7__cierre {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  color: var(--color-crema);
+  max-width: var(--max-parrafo);
+  line-height: 1.5;
+  border-top: 1px solid rgba(250, 246, 240, 0.12);
+  padding-top: 1.75rem;
+}
+
+/* ============================================================
+   BLOQUE 8 — CTA FINAL
+   MOVIMIENTO 5: gradiente animado (CSS animation)
+   ============================================================ */
+.b8-cta {
+  /* MOVIMIENTO 5: gradiente animado */
+  background: linear-gradient(135deg, #3E8DA1, #EA8672, #E07688, #3E8DA1);
+  background-size: 400% 400%;
+  animation: gradiente 8s ease infinite;
+  padding: var(--space-section) var(--px-container);
+}
+
+@keyframes gradiente {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.b8__inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.b8__titulo {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-crema);
+  max-width: 640px;
+  line-height: 1.2;
+}
+
+.b8__microcopy {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: rgba(250, 246, 240, 0.82);
+  max-width: 460px;
+  line-height: 1.65;
+  margin-top: -0.5rem;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background-color: #131e28;
+  padding: 3rem var(--px-container);
+}
+
+.footer__inner {
+  max-width: var(--max-content);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.footer__logo-img {
+  height: 32px;
+  width: auto;
+  opacity: 0.85;
+  /* Placeholder si logo no existe */
+  min-width: 64px;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .footer__links {
+    align-items: flex-end;
+  }
+}
+
+.footer__link {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: rgba(250, 246, 240, 0.55);
+  transition: color 0.2s ease;
+}
+
+.footer__link:hover {
+  color: rgba(250, 246, 240, 0.9);
+}
+
+/* ============================================================
+   UTILIDADES / ACCESIBILIDAD
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .b8-cta {
+    animation: none;
+    background: var(--color-turquesa);
+  }
+  .hero__blob {
+    animation: none;
+  }
+}
+
+/* Focus visible para teclado */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-turquesa);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
