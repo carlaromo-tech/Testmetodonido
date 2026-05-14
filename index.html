@@ -158,14 +158,14 @@
 
     /* HERO */
     .hero {
-      background: var(--color-crema);
+      background: linear-gradient(145deg, var(--color-crema) 55%, var(--color-crema-warm) 100%);
       padding: clamp(3rem, 7vw, 5rem) 0 var(--section-pad);
       position: relative; overflow: hidden;
     }
     .hero__deco {
       position: absolute; top: 5%; right: -4%;
       width: 42vw; max-width: 500px;
-      opacity: 0.07; pointer-events: none; z-index: 1;
+      opacity: 0.11; pointer-events: none; z-index: 1;
     }
     .hero__badge {
       display: inline-flex; align-items: center; gap: 0.625rem;
@@ -188,12 +188,20 @@
     }
     .hero__titular {
       font-family: var(--font-titular);
-      font-weight: 400;
+      font-weight: 500;
       font-size: clamp(2.5rem, 7vw, 5.5rem);
       line-height: 1.05; letter-spacing: -0.035em;
       text-wrap: balance;
       color: var(--color-navy);
       margin-bottom: 2.5rem; max-width: 14ch;
+    }
+    .hero__titular::before {
+      content: '';
+      display: block;
+      width: 44px; height: 3px;
+      background: var(--color-coral);
+      border-radius: 2px;
+      margin-bottom: 1.75rem;
     }
     .hero__titular em {
       font-style: italic; color: var(--color-coral); font-weight: 400;
@@ -221,7 +229,7 @@
 
     /* PENSAMIENTOS */
     .pensamientos {
-      background: var(--color-turquesa-mist);
+      background: var(--color-turquesa-pale);
       padding: var(--section-pad) 0;
       position: relative; overflow: hidden;
     }
@@ -320,11 +328,15 @@
     .por-que { background: var(--color-crema); padding: var(--section-pad) 0; }
     .section-header { max-width: 800px; margin: 0 auto 4rem; text-align: center; }
     .section-header__label {
-      display: block;
+      display: inline-flex; align-items: center;
+      padding: 0.35rem 0.9rem;
+      background: var(--color-turquesa-pale);
+      border: 1px solid rgba(62, 141, 161, 0.25);
+      border-radius: 999px;
       font-size: 0.75rem; font-weight: 600;
       color: var(--color-turquesa);
-      letter-spacing: 0.25em; text-transform: uppercase;
-      margin-bottom: 1rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      margin-bottom: 1.25rem;
     }
     .section-header__title {
       font-family: var(--font-titular); font-weight: 400;
@@ -615,9 +627,9 @@
     /* CTA FINAL */
     .cta-final {
       padding: var(--section-pad) 0;
-      background: linear-gradient(135deg, #3E8DA1, #EA8672, #E07688, #3E8DA1);
-      background-size: 400% 400%;
-      animation: gradiente 14s ease infinite;
+      background: linear-gradient(135deg, #1C6B80, #D4644F, #C05068, #1C6B80);
+      background-size: 300% 300%;
+      animation: gradiente 10s ease infinite;
       text-align: center;
       position: relative; overflow: hidden;
     }
@@ -634,10 +646,11 @@
       margin-bottom: 1.5rem; opacity: 0.85;
     }
     .cta-final h2 {
-      font-family: var(--font-titular); font-weight: 400;
-      font-size: clamp(2.25rem, 5.5vw, 4rem);
+      font-family: var(--font-titular); font-weight: 500;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
       color: var(--color-crema); margin-bottom: 2.5rem;
-      letter-spacing: -0.025em; line-height: 1.05;
+      letter-spacing: -0.03em; line-height: 1.0;
+      text-wrap: balance;
       max-width: 800px; margin-left: auto; margin-right: auto;
     }
     .cta-final__microcopy {
@@ -1037,67 +1050,82 @@
           });
         });
 
-        if (!prefersReducedMotion) {
+        // ── dur: 0 para usuarios con reduced-motion (snap instantáneo) ──────
+        const dur = prefersReducedMotion ? 0 : 1;
 
-        // ── 1. HERO: entrada dramática en secuencia ──────────────────────────
-        gsap.set('.hero__badge', { opacity: 0, y: 10 });
-        gsap.set('.hero__line', { y: '108%' });
-        gsap.set('.hero__quote', { opacity: 0, y: 18 });
-        gsap.set('.hero__cuerpo', { opacity: 0, y: 14 });
-        gsap.set('.hero__cta-group', { opacity: 0, y: 10 });
+        // ── 1. HERO: entrada en secuencia (siempre corre) ────────────────────
+        gsap.set('.hero__badge',    { opacity: 0, y: prefersReducedMotion ? 0 : 10 });
+        gsap.set('.hero__line',     { y: prefersReducedMotion ? '0%' : '108%' });
+        gsap.set('.hero__quote',    { opacity: 0, y: prefersReducedMotion ? 0 : 18 });
+        gsap.set('.hero__cuerpo',   { opacity: 0, y: prefersReducedMotion ? 0 : 14 });
+        gsap.set('.hero__cta-group',{ opacity: 0, y: prefersReducedMotion ? 0 : 10 });
 
         const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
         heroTl
-          .to('.hero__badge',    { opacity: 1, y: 0, duration: 0.65, delay: 0.1 })
-          .to('.hero__line',     { y: '0%', duration: 1.0, stagger: 0.18 }, '-=0.25')
-          .to('.hero__quote',    { opacity: 1, y: 0, duration: 0.75 }, '-=0.45')
-          .to('.hero__cuerpo',   { opacity: 1, y: 0, duration: 0.65 }, '-=0.45')
-          .to('.hero__cta-group',{ opacity: 1, y: 0, duration: 0.55 }, '-=0.4');
+          .to('.hero__badge',    { opacity: 1, y: 0, duration: dur * 0.65, delay: prefersReducedMotion ? 0 : 0.1 })
+          .to('.hero__line',     { y: '0%', duration: dur * 1.0, stagger: dur * 0.18 }, '-=' + (dur * 0.25))
+          .to('.hero__quote',    { opacity: 1, y: 0, duration: dur * 0.75 }, '-=' + (dur * 0.45))
+          .to('.hero__cuerpo',   { opacity: 1, y: 0, duration: dur * 0.65 }, '-=' + (dur * 0.45))
+          .to('.hero__cta-group',{ opacity: 1, y: 0, duration: dur * 0.55 }, '-=' + (dur * 0.4));
 
-        // ── 2. HERO: logo de fondo respira suavemente ────────────────────────
+        // ── 2. PENSAMIENTOS: principal + tarjetas (siempre corre) ───────────
+        gsap.from('.pensamientos__principal', {
+          opacity: 0, y: prefersReducedMotion ? 0 : 24, duration: dur * 0.9,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: '.pensamientos__principal', start: 'top 82%', once: true }
+        });
+        gsap.fromTo('.pensamiento-card',
+          { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+          { opacity: 1, y: 0, duration: dur * 0.75, stagger: dur * 0.15, ease: 'power2.out',
+            scrollTrigger: { trigger: '.pensamientos__grid', start: 'top 85%', once: true } }
+        );
+
+        // ── 3. POR QUÉ + SESIONES: cards (siempre corre) ────────────────────
+        gsap.fromTo('.card-pq',
+          { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+          { opacity: 1, y: 0, duration: dur * 0.8, stagger: dur * 0.12, ease: 'power2.out',
+            scrollTrigger: { trigger: '.por-que__grid', start: 'top 85%', once: true } }
+        );
+        gsap.fromTo('.card-sesion',
+          { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+          { opacity: 1, y: 0, duration: dur * 0.8, stagger: dur * 0.12, ease: 'power2.out',
+            scrollTrigger: { trigger: '.sesiones__grid', start: 'top 85%', once: true } }
+        );
+
+        // ── 4. CARLA: credenciales (siempre corre) ───────────────────────────
+        gsap.from('.carla__credenciales li', {
+          opacity: 0, x: prefersReducedMotion ? 0 : -14, duration: dur * 0.5, stagger: dur * 0.09, ease: 'power2.out',
+          scrollTrigger: { trigger: '.carla__credenciales', start: 'top 80%', once: true }
+        });
+
+        // ── 5. CTA FINAL (siempre corre) ─────────────────────────────────────
+        gsap.from('.cta-final h2', {
+          opacity: 0, scale: prefersReducedMotion ? 1 : 0.96, y: prefersReducedMotion ? 0 : 20,
+          duration: dur * 1.0, ease: 'power3.out',
+          scrollTrigger: { trigger: '.cta-final', start: 'top 68%', once: true }
+        });
+        gsap.from('.cta-final .btn', {
+          opacity: 0, y: prefersReducedMotion ? 0 : 14, duration: dur * 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: '.cta-final', start: 'top 60%', once: true }
+        });
+
+        if (!prefersReducedMotion) {
+        // ── 6. Solo si hay movimiento OK: parallax + loops ───────────────────
+
         gsap.to('.hero__deco', {
           scale: 1.06, duration: 6,
           ease: 'sine.inOut', yoyo: true, repeat: -1,
           transformOrigin: 'center center'
         });
 
-        // ── 3. PENSAMIENTOS: tarjetas con stagger ───────────────────────────
-        gsap.from('.pensamientos__principal', {
-          opacity: 0, y: 24, duration: 0.9,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: '.pensamientos__principal', start: 'top 82%', once: true }
-        });
-        gsap.fromTo('.pensamiento-card',
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.75, stagger: 0.15, ease: 'power2.out',
-            scrollTrigger: { trigger: '.pensamientos__grid', start: 'top 85%', once: true } }
-        );
-
-        // ── 4. PUENTE: parallax en la marca tipográfica gigante ──────────────
-        gsap.to('.puente__marca', {
-          y: '-22%', ease: 'none',
-          scrollTrigger: { trigger: '.puente', start: 'top bottom', end: 'bottom top', scrub: 1.2 }
-        });
         gsap.from('.puente__titular', {
           opacity: 0, y: 32, duration: 1.0, ease: 'power2.out',
           scrollTrigger: { trigger: '.puente', start: 'top 60%', once: true }
         });
-
-        // ── 5. POR QUÉ: cards entran con stagger ────────────────────────────
-        gsap.fromTo('.card-pq',
-          { y: 20 },
-          { y: 0, duration: 0.8, stagger: 0.12, ease: 'power2.out',
-            scrollTrigger: { trigger: '.por-que__grid', start: 'top 85%', once: true } }
-        );
-
-        // ── 6. SESIONES: cards con stagger ──────────────────────────────────
-        gsap.fromTo('.card-sesion',
-          { y: 20 },
-          { y: 0, duration: 0.8, stagger: 0.12, ease: 'power2.out',
-            scrollTrigger: { trigger: '.sesiones__grid', start: 'top 85%', once: true } }
-        );
-
-        // ── 7. CARLA: parallax en marca y foto ──────────────────────────────
+        gsap.to('.puente__marca', {
+          y: '-22%', ease: 'none',
+          scrollTrigger: { trigger: '.puente', start: 'top bottom', end: 'bottom top', scrub: 1.2 }
+        });
         gsap.to('.carla__marca', {
           y: '-18%', ease: 'none',
           scrollTrigger: { trigger: '.carla', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
@@ -1105,20 +1133,6 @@
         gsap.to('.carla__foto', {
           y: '-28px', ease: 'none',
           scrollTrigger: { trigger: '.carla', start: 'top bottom', end: 'bottom top', scrub: 1.8 }
-        });
-        gsap.from('.carla__credenciales li', {
-          opacity: 0, x: -14, duration: 0.5, stagger: 0.09, ease: 'power2.out',
-          scrollTrigger: { trigger: '.carla__credenciales', start: 'top 80%', once: true }
-        });
-
-        // ── 8. CTA FINAL: h2 aparece desde abajo con leve escala ────────────
-        gsap.from('.cta-final h2', {
-          opacity: 0, scale: 0.96, y: 20, duration: 1.0, ease: 'power3.out',
-          scrollTrigger: { trigger: '.cta-final', start: 'top 68%', once: true }
-        });
-        gsap.from('.cta-final .btn', {
-          opacity: 0, y: 14, duration: 0.7, ease: 'power2.out',
-          scrollTrigger: { trigger: '.cta-final', start: 'top 60%', once: true }
         });
 
         } // end if !prefersReducedMotion
