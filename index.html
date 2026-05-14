@@ -372,19 +372,16 @@
     }
     .card-pq:hover::before { transform: scaleX(1); }
     .card-pq__icon {
-      width: 52px; height: 52px;
-      background: var(--color-turquesa-pale);
-      border-radius: 14px;
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, #E8F1F3 0%, #EFF7F9 100%);
+      border-radius: 16px;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 1.5rem; flex-shrink: 0;
+      border: 1px solid rgba(62, 141, 161, 0.18);
+      box-shadow: 0 2px 10px rgba(62, 141, 161, 0.1), inset 0 1px 0 rgba(255,255,255,0.75);
     }
     .card-pq__icon svg {
-      width: 22px; height: 22px;
-      stroke: var(--color-turquesa);
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
+      width: 26px; height: 26px;
     }
     .card-pq__title {
       font-family: var(--font-titular); font-weight: 500;
@@ -860,10 +857,15 @@
       <div class="por-que__grid">
         <article class="card-pq">
           <div class="card-pq__icon">
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-              <line x1="12" y1="17" x2="12.01" y2="17" stroke-width="2.5"/>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Burbuja de diálogo orgánica -->
+              <path d="M4 5.5C4 4.12 5.12 3 6.5 3h11C18.88 3 20 4.12 20 5.5v8C20 14.88 18.88 16 17.5 16H9.5L5 19.5V5.5z"
+                fill="#3E8DA1" fill-opacity="0.13" stroke="#3E8DA1" stroke-width="1.65" stroke-linejoin="round"/>
+              <!-- Arco del signo de interrogación -->
+              <path d="M10.2 8.8a2 2 0 1 1 2.3 2.15c-.55.15-.7.6-.7 1.35"
+                stroke="#3E8DA1" stroke-width="1.8" stroke-linecap="round"/>
+              <!-- Punto del signo de interrogación -->
+              <circle cx="11.8" cy="14.1" r="0.95" fill="#3E8DA1"/>
             </svg>
           </div>
           <h3 class="card-pq__title">Porque adivinar agota y los consejos genéricos no resuelven</h3>
@@ -872,9 +874,16 @@
 
         <article class="card-pq">
           <div class="card-pq__icon">
-            <svg viewBox="0 0 24 24">
-              <circle cx="11" cy="11" r="8"/>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Lente de lupa con relleno sutil -->
+              <circle cx="10.5" cy="10.5" r="6.2"
+                fill="#3E8DA1" fill-opacity="0.12" stroke="#3E8DA1" stroke-width="1.75"/>
+              <!-- Onda/pulso interna — representa insight -->
+              <path d="M7.5 10.5h1.2l1.1-2.2 1.2 4.4 1.1-2.2h1.2"
+                stroke="#3E8DA1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Mango con grosor elegante -->
+              <line x1="15.3" y1="15.3" x2="20" y2="20"
+                stroke="#3E8DA1" stroke-width="2.2" stroke-linecap="round"/>
             </svg>
           </div>
           <h3 class="card-pq__title">Primero entendemos, después decidimos</h3>
@@ -883,11 +892,25 @@
 
         <article class="card-pq">
           <div class="card-pq__icon">
-            <svg viewBox="0 0 24 24">
-              <line x1="6" y1="3" x2="6" y2="15"/>
-              <circle cx="18" cy="6" r="3"/>
-              <circle cx="6" cy="18" r="3"/>
-              <path d="M18 9a9 9 0 0 1-9 9"/>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Punto de origen arriba -->
+              <circle cx="12" cy="4" r="2"
+                fill="#3E8DA1" fill-opacity="0.28" stroke="#3E8DA1" stroke-width="1.65"/>
+              <!-- Tallo central -->
+              <line x1="12" y1="6" x2="12" y2="11.5"
+                stroke="#3E8DA1" stroke-width="1.75" stroke-linecap="round"/>
+              <!-- Rama izquierda con curva suave -->
+              <path d="M12 11.5 Q8.5 14 7 18.5"
+                stroke="#3E8DA1" stroke-width="1.75" stroke-linecap="round" fill="none"/>
+              <!-- Rama derecha con curva suave -->
+              <path d="M12 11.5 Q15.5 14 17 18.5"
+                stroke="#3E8DA1" stroke-width="1.75" stroke-linecap="round" fill="none"/>
+              <!-- Destino izquierdo -->
+              <circle cx="7" cy="20.2" r="1.75"
+                fill="#3E8DA1" fill-opacity="0.28" stroke="#3E8DA1" stroke-width="1.65"/>
+              <!-- Destino derecho -->
+              <circle cx="17" cy="20.2" r="1.75"
+                fill="#3E8DA1" fill-opacity="0.28" stroke="#3E8DA1" stroke-width="1.65"/>
             </svg>
           </div>
           <h3 class="card-pq__title">Dos caminos posibles, ambos claros</h3>
