@@ -34,8 +34,8 @@
       --color-borde: rgba(30, 45, 61, 0.08);
       --font-titular: 'Fraunces', Georgia, serif;
       --font-cuerpo: 'Inter', system-ui, sans-serif;
-      --container-pad: clamp(1.5rem, 5vw, 4rem);
-      --section-pad: clamp(5rem, 9vw, 7rem);
+      --container-pad: clamp(1.25rem, 4vw, 4rem);
+      --section-pad: clamp(2.75rem, 6vw, 5rem);
       --max-w: 1200px;
     }
 
@@ -159,7 +159,7 @@
     /* HERO */
     .hero {
       background: linear-gradient(145deg, var(--color-crema) 55%, var(--color-crema-warm) 100%);
-      padding: clamp(3rem, 7vw, 5rem) 0 var(--section-pad);
+      padding: clamp(2rem, 5vw, 3.5rem) 0 var(--section-pad);
       position: relative; overflow: hidden;
     }
     .hero__deco {
@@ -297,7 +297,7 @@
     /* PUENTE */
     .puente {
       background: var(--color-navy);
-      padding: clamp(6rem, 12vw, 9rem) 0;
+      padding: clamp(3rem, 7vw, 5.5rem) 0;
       position: relative; overflow: hidden;
     }
     .puente__marca {
@@ -723,6 +723,22 @@
     .nav--dark .btn--navy:hover {
       background: rgba(250, 246, 240, 0.2);
       transform: translateY(-2px);
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --section-pad: 2rem;
+      }
+      .pensamientos__grid { gap: 0.875rem; }
+      .por-que__grid { gap: 0.875rem; }
+      .sesiones__grid { gap: 0.875rem; }
+      .pensamientos__principal { margin-bottom: 2rem; }
+      .section-header { margin-bottom: 2rem; }
+      .sesiones__informe { padding: 1.5rem; gap: 1.25rem; }
+      .sesiones__datos { padding: 1.5rem; }
+      .card-pq { padding: 1.75rem 1.5rem; }
+      .card-sesion { padding: 1.75rem 1.5rem; }
+      .para-quien__card { padding: 1.75rem 1.5rem; }
     }
 
     /* ACCESIBILIDAD: foco visible para navegación por teclado */
