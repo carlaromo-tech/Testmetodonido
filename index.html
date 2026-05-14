@@ -371,11 +371,20 @@
       border-color: rgba(62, 141, 161, 0.4);
     }
     .card-pq:hover::before { transform: scaleX(1); }
-    .card-pq__num {
-      font-family: var(--font-titular); font-weight: 300;
-      font-size: 3rem; line-height: 1;
-      color: var(--color-coral); letter-spacing: -0.04em;
-      margin-bottom: 1.25rem; display: block;
+    .card-pq__icon {
+      width: 52px; height: 52px;
+      background: var(--color-turquesa-pale);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem; flex-shrink: 0;
+    }
+    .card-pq__icon svg {
+      width: 22px; height: 22px;
+      stroke: var(--color-turquesa);
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
     }
     .card-pq__title {
       font-family: var(--font-titular); font-weight: 500;
@@ -850,19 +859,37 @@
 
       <div class="por-que__grid">
         <article class="card-pq">
-          <span class="card-pq__num">01</span>
+          <div class="card-pq__icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17" stroke-width="2.5"/>
+            </svg>
+          </div>
           <h3 class="card-pq__title">Porque adivinar agota y los consejos genéricos no resuelven</h3>
           <p class="card-pq__text">La mayoría de los padres llegan a consulta cuando el problema ya es grande. Y los libros, podcasts o consejos en redes asumen que ya sabes qué pasa en tu casa específicamente.</p>
         </article>
 
         <article class="card-pq">
-          <span class="card-pq__num">02</span>
+          <div class="card-pq__icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </div>
           <h3 class="card-pq__title">Primero entendemos, después decidimos</h3>
           <p class="card-pq__text">El Diagnóstico Familiar del Adolescente invierte el orden habitual: primero entendemos qué está pasando con tu hijo y con la comunicación familiar. Después decidimos juntos qué necesitas.</p>
         </article>
 
         <article class="card-pq">
-          <span class="card-pq__num">03</span>
+          <div class="card-pq__icon">
+            <svg viewBox="0 0 24 24">
+              <line x1="6" y1="3" x2="6" y2="15"/>
+              <circle cx="18" cy="6" r="3"/>
+              <circle cx="6" cy="18" r="3"/>
+              <path d="M18 9a9 9 0 0 1-9 9"/>
+            </svg>
+          </div>
           <h3 class="card-pq__title">Dos caminos posibles, ambos claros</h3>
           <p class="card-pq__text">Para muchas familias, aplicar el plan personalizado que te entrego es suficiente para mover el clima en casa.</p>
           <p class="card-pq__text">Para otras, el diagnóstico identifica que el adolescente necesita acompañamiento individual, que la familia se beneficiaría de un proceso más largo, o que hay señales que requieren atención especializada. En esos casos, te oriento hacia el siguiente paso.</p>
@@ -1132,9 +1159,9 @@
         // ════════════════════════════════════════════════════
         // POR QUÉ — números grandes + cards
         // ════════════════════════════════════════════════════
-        gsap.fromTo('.card-pq__num',
-          { opacity: 0, scale: rm ? 1 : 0.6, y: rm ? 0 : 20 },
-          { opacity: 1, scale: 1, y: 0, duration: d * 0.7, stagger: d * 0.15, ease: 'back.out(1.2)',
+        gsap.fromTo('.card-pq__icon',
+          { opacity: 0, scale: rm ? 1 : 0.7, y: rm ? 0 : 12 },
+          { opacity: 1, scale: 1, y: 0, duration: d * 0.65, stagger: d * 0.15, ease: 'back.out(1.3)',
             scrollTrigger: { trigger: '.por-que__grid', start: 'top 80%', once: true } }
         );
         gsap.fromTo('.card-pq',
