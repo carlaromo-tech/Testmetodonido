@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico Familiar del Adolescente — Carla Romo Salcedo</title>
+  <meta name="description" content="[PENDIENTE: definir meta description]">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <style>
+    :root {
+      --color-navy: #1E2D3D;
+      --color-navy-soft: #2A3D52;
+      --color-navy-deep: #162230;
+      --color-turquesa: #3E8DA1;
+      --color-turquesa-pale: #E8F1F3;
+      --color-turquesa-mist: #F2F8F9;
+      --color-coral: #EA8672;
+      --color-rosa: #E07688;
+      --color-crema: #FAF6F0;
+      --color-crema-warm: #F5EDE2;
+      --color-blanco: #FFFFFF;
+      --color-texto: #1E2D3D;
+      --color-texto-suave: #4A5B6E;
+      --color-texto-muted: #6B7B8E;
+      --color-borde: rgba(30, 45, 61, 0.08);
+      --font-titular: 'Fraunces', Georgia, serif;
+      --font-cuerpo: 'Inter', system-ui, sans-serif;
+      --container-pad: clamp(1.5rem, 5vw, 4rem);
+      --section-pad: clamp(5rem, 9vw, 7rem);
+      --max-w: 1200px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; padding: 0; }
+
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    body {
+      font-family: var(--font-cuerpo);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--color-texto);
+      background: var(--color-crema);
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; transition: opacity 0.2s; }
+    ul { list-style: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding-left: var(--container-pad);
+      padding-right: var(--container-pad);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      background: var(--color-navy);
+      color: var(--color-crema);
+      padding: 0.65rem var(--container-pad);
+      text-align: center;
+      font-size: 0.8125rem;
+      letter-spacing: 0.04em;
+      font-weight: 400;
+      position: relative;
+      z-index: 50;
+    }
+    .topbar__inner {
+      display: flex; justify-content: center; align-items: center;
+      gap: 0.75rem; flex-wrap: wrap;
+      max-width: var(--max-w); margin: 0 auto;
+    }
+    .topbar__item { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .topbar__sep {
+      width: 4px; height: 4px;
+      background: var(--color-coral); border-radius: 50%; opacity: 0.7;
+    }
+    .topbar__highlight { color: var(--color-coral); font-weight: 500; }
+    @media (max-width: 640px) {
+      .topbar { font-size: 0.75rem; padding: 0.5rem 1rem; }
+      .topbar__sep { display: none; }
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(250, 246, 240, 0.92);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-borde);
+      padding: 0.9rem var(--container-pad);
+    }
+    .nav__container {
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav__logo {
+      font-family: var(--font-titular);
+      font-weight: 500; font-size: 1.375rem;
+      color: var(--color-navy); letter-spacing: -0.01em;
+    }
+    .nav__logo-tag {
+      font-family: var(--font-cuerpo);
+      font-size: 0.6875rem; font-weight: 500;
+      color: var(--color-texto-muted);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      margin-left: 0.75rem; padding-left: 0.75rem;
+      border-left: 1px solid var(--color-borde);
+    }
+    .nav__cta { font-size: 0.875rem; padding: 0.625rem 1.25rem; }
+    @media (max-width: 600px) { .nav__logo-tag { display: none; } }
+
+    /* BOTONES */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.5rem;
+      font-family: var(--font-cuerpo);
+      font-weight: 500; font-size: 1rem;
+      padding: 0.9rem 1.75rem;
+      border-radius: 999px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.01em; cursor: pointer;
+    }
+    .btn--primary {
+      background: var(--color-coral); color: var(--color-blanco);
+      box-shadow: 0 4px 14px rgba(234, 134, 114, 0.25);
+    }
+    .btn--primary:hover {
+      background: #d97560; transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(234, 134, 114, 0.35);
+    }
+    .btn--navy { background: var(--color-navy); color: var(--color-crema); }
+    .btn--navy:hover { background: var(--color-navy-deep); transform: translateY(-2px); }
+    .btn--crema {
+      background: var(--color-crema); color: var(--color-navy);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    }
+    .btn--crema:hover { background: var(--color-blanco); transform: translateY(-2px); }
+    .btn--large { font-size: 1.0625rem; padding: 1.1rem 2.25rem; }
+    .btn__arrow { transition: transform 0.3s; }
+    .btn:hover .btn__arrow { transform: translateX(4px); }
+
+    /* HERO */
+    .hero {
+      background: var(--color-crema);
+      padding: clamp(3rem, 7vw, 5rem) 0 var(--section-pad);
+      position: relative; overflow: hidden;
+    }
+    .hero__deco {
+      position: absolute; top: 5%; right: -8%;
+      width: 45vw; max-width: 540px;
+      height: 45vw; max-height: 540px;
+      opacity: 0.18; pointer-events: none; z-index: 1;
+    }
+    .hero__badge {
+      display: inline-flex; align-items: center; gap: 0.625rem;
+      padding: 0.5rem 1rem;
+      background: var(--color-turquesa-pale);
+      border: 1px solid rgba(62, 141, 161, 0.2);
+      border-radius: 999px;
+      font-size: 0.8125rem; font-weight: 500;
+      color: var(--color-turquesa);
+      letter-spacing: 0.04em; margin-bottom: 2rem;
+    }
+    .hero__badge-dot {
+      width: 6px; height: 6px;
+      background: var(--color-turquesa); border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+    .hero__titular {
+      font-family: var(--font-titular);
+      font-weight: 400;
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      line-height: 0.98; letter-spacing: -0.035em;
+      color: var(--color-navy);
+      margin-bottom: 2.5rem; max-width: 14ch;
+    }
+    .hero__titular em {
+      font-style: italic; color: var(--color-coral); font-weight: 400;
+    }
+    .hero__quote {
+      font-family: var(--font-titular); font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      line-height: 1.4; color: var(--color-texto-suave);
+      max-width: 540px;
+      padding: 1.25rem 0 1.25rem 1.5rem;
+      border-left: 3px solid var(--color-coral);
+      margin-bottom: 2.5rem;
+    }
+    .hero__cuerpo {
+      font-size: 1.0625rem; line-height: 1.7;
+      color: var(--color-texto-suave);
+      max-width: 580px; margin-bottom: 2.5rem;
+    }
+    .hero__cta-group {
+      display: flex; flex-direction: column; gap: 0.875rem; align-items: flex-start;
+    }
+    .hero__microcopy {
+      font-size: 0.875rem; color: var(--color-texto-muted); letter-spacing: 0.02em;
+    }
+
+    /* PENSAMIENTOS */
+    .pensamientos {
+      background: var(--color-turquesa-mist);
+      padding: var(--section-pad) 0;
+      position: relative; overflow: hidden;
+    }
+    .pensamientos__label {
+      display: block;
+      font-family: var(--font-cuerpo);
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--color-turquesa);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 1.5rem; text-align: center;
+    }
+    .pensamientos__principal {
+      font-family: var(--font-titular); font-style: italic; font-weight: 400;
+      font-size: clamp(1.625rem, 3.5vw, 2.5rem);
+      line-height: 1.35; color: var(--color-navy);
+      max-width: 880px; margin: 0 auto 4rem;
+      text-align: center; letter-spacing: -0.015em;
+      position: relative; padding: 0 2rem;
+    }
+    .pensamientos__principal::before,
+    .pensamientos__principal::after {
+      font-family: var(--font-titular);
+      color: var(--color-coral); font-size: 3em; line-height: 0;
+      position: absolute; opacity: 0.5;
+    }
+    .pensamientos__principal::before { content: "\201C"; top: 0.35em; left: 0; }
+    .pensamientos__principal::after { content: "\201D"; bottom: -0.15em; right: 0; }
+
+    .pensamientos__grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; max-width: 1000px; margin: 0 auto 4rem;
+    }
+    /* CAMBIO CRÍTICO: las tarjetas son VISIBLES por defecto */
+    .pensamiento-card {
+      background: var(--color-blanco);
+      border-radius: 12px; padding: 1.75rem;
+      box-shadow: 0 2px 16px rgba(30, 45, 61, 0.04);
+      border: 1px solid var(--color-borde);
+      font-family: var(--font-titular); font-style: italic; font-weight: 400;
+      font-size: 1rem; line-height: 1.5;
+      color: var(--color-texto-suave);
+      position: relative;
+    }
+    .pensamiento-card::before {
+      content: "\201C";
+      font-family: var(--font-titular); font-size: 2.5rem;
+      color: var(--color-turquesa); opacity: 0.3;
+      line-height: 0; position: absolute; top: 1.5rem; left: 1.5rem;
+    }
+    .pensamiento-card span { display: block; padding-top: 1.5rem; }
+    @media (max-width: 768px) { .pensamientos__grid { grid-template-columns: 1fr; } }
+
+    .pensamientos__cierre {
+      max-width: 700px; margin: 0 auto;
+      text-align: center; padding-top: 3rem;
+      border-top: 1px solid rgba(62, 141, 161, 0.2);
+    }
+    .pensamientos__cierre p {
+      font-family: var(--font-titular); font-weight: 400;
+      font-size: clamp(1.25rem, 2.2vw, 1.625rem);
+      line-height: 1.4; color: var(--color-navy); letter-spacing: -0.01em;
+    }
+
+    /* PUENTE */
+    .puente {
+      background: var(--color-navy);
+      padding: clamp(6rem, 12vw, 9rem) 0;
+      position: relative; overflow: hidden;
+    }
+    .puente__marca {
+      position: absolute; right: -8%; bottom: -20%;
+      font-family: var(--font-titular); font-weight: 400;
+      font-size: clamp(20rem, 50vw, 50rem);
+      color: var(--color-navy-soft); opacity: 0.4;
+      pointer-events: none; user-select: none;
+      line-height: 1; z-index: 0; letter-spacing: -0.05em;
+    }
+    .puente__label {
+      display: block;
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--color-coral);
+      letter-spacing: 0.25em; text-transform: uppercase;
+      text-align: center; margin-bottom: 2rem;
+    }
+    .puente__titular {
+      font-family: var(--font-titular); font-style: italic; font-weight: 400;
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      line-height: 1.2; color: var(--color-crema);
+      max-width: 900px; margin: 0 auto;
+      text-align: center; letter-spacing: -0.02em;
+    }
+
+    /* POR QUÉ */
+    .por-que { background: var(--color-crema); padding: var(--section-pad) 0; }
+    .section-header { max-width: 800px; margin: 0 auto 4rem; text-align: center; }
+    .section-header__label {
+      display: block;
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--color-turquesa);
+      letter-spacing: 0.25em; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .section-header__title {
+      font-family: var(--font-titular); font-weight: 400;
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      line-height: 1.1; color: var(--color-navy); letter-spacing: -0.025em;
+    }
+    .por-que__grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-bottom: 3rem;
+    }
+    @media (max-width: 900px) { .por-que__grid { grid-template-columns: 1fr; } }
+
+    /* CAMBIO CRÍTICO: cards visibles por defecto */
+    .card-pq {
+      background: var(--color-blanco);
+      border: 1px solid var(--color-borde); border-radius: 16px;
+      padding: 2.5rem 2rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative; overflow: hidden;
+    }
+    .card-pq::before {
+      content: ""; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--color-turquesa), var(--color-coral));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+    .card-pq:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(30, 45, 61, 0.08);
+      border-color: rgba(62, 141, 161, 0.3);
+    }
+    .card-pq:hover::before { transform: scaleX(1); }
+    .card-pq__num {
+      font-family: var(--font-titular); font-weight: 300;
+      font-size: 3rem; line-height: 1;
+      color: var(--color-coral); letter-spacing: -0.04em;
+      margin-bottom: 1.25rem; display: block;
+    }
+    .card-pq__title {
+      font-family: var(--font-titular); font-weight: 500;
+      font-size: 1.25rem; line-height: 1.3;
+      color: var(--color-navy); margin-bottom: 1rem; letter-spacing: -0.01em;
+    }
+    .card-pq__text {
+      font-size: 0.9375rem; line-height: 1.6;
+      color: var(--color-texto-suave);
+    }
+    .card-pq__text + .card-pq__text { margin-top: 0.875rem; }
+
+    .card-pq--final {
+      background: var(--color-navy); color: var(--color-crema);
+      border: none;
+      display: flex; flex-direction: column; justify-content: center;
+      text-align: center; max-width: 700px; margin: 0 auto;
+      padding: 2.5rem;
+    }
+    .card-pq--final p {
+      font-family: var(--font-titular); font-style: italic; font-weight: 400;
+      font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+      line-height: 1.4; color: var(--color-crema); letter-spacing: -0.01em;
+    }
+
+    /* SESIONES */
+    .sesiones { background: var(--color-blanco); padding: var(--section-pad) 0; }
+    .sesiones__grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem; margin-bottom: 3rem;
+    }
+    @media (max-width: 900px) { .sesiones__grid { grid-template-columns: 1fr; } }
+
+    /* CAMBIO CRÍTICO: cards de sesión visibles por defecto */
+    .card-sesion {
+      background: var(--color-crema);
+      border-radius: 20px; padding: 2.5rem 2rem;
+      display: flex; flex-direction: column; gap: 1.25rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative; overflow: hidden;
+      border: 1px solid var(--color-borde);
+    }
+    .card-sesion:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px rgba(30, 45, 61, 0.1);
+    }
+    .card-sesion__top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding-bottom: 1.5rem; border-bottom: 1px solid var(--color-borde);
+    }
+    .card-sesion__num {
+      font-family: var(--font-titular); font-weight: 300;
+      font-size: 4rem; line-height: 0.85;
+      color: var(--color-navy); letter-spacing: -0.05em;
+    }
+    .card-sesion__badge {
+      display: inline-flex; align-items: center;
+      padding: 0.45rem 0.875rem;
+      background: var(--color-turquesa-pale);
+      border-radius: 999px;
+      font-family: var(--font-cuerpo); font-weight: 500;
+      font-size: 0.75rem; color: var(--color-turquesa);
+      letter-spacing: 0.04em; white-space: nowrap;
+    }
+    .card-sesion__title {
+      font-family: var(--font-titular); font-weight: 500;
+      font-size: 1.5rem; line-height: 1.2;
+      color: var(--color-navy); letter-spacing: -0.015em;
+    }
+    .card-sesion__text {
+      font-size: 0.9375rem; line-height: 1.65;
+      color: var(--color-texto-suave); flex: 1;
+    }
+
+    .sesiones__informe {
+      background: linear-gradient(135deg, var(--color-turquesa-pale), var(--color-crema-warm));
+      border-radius: 20px; padding: 2.5rem;
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 2rem; align-items: center; margin-bottom: 2.5rem;
+      border: 1px solid rgba(62, 141, 161, 0.15);
+    }
+    .sesiones__informe-icon {
+      width: 60px; height: 60px;
+      background: var(--color-navy); border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .sesiones__informe-icon svg { width: 28px; height: 28px; }
+    .sesiones__informe-title {
+      font-family: var(--font-titular); font-weight: 500;
+      font-size: 1.25rem; color: var(--color-navy);
+      margin-bottom: 0.4rem; letter-spacing: -0.01em;
+    }
+    .sesiones__informe-title span {
+      color: var(--color-coral); font-style: italic; font-weight: 400;
+    }
+    .sesiones__informe-text {
+      font-size: 0.9375rem; color: var(--color-texto-suave); line-height: 1.55;
+    }
+    @media (max-width: 640px) {
+      .sesiones__informe { grid-template-columns: 1fr; text-align: center; }
+      .sesiones__informe-icon { margin: 0 auto; }
+    }
+
+    .sesiones__datos {
+      background: var(--color-navy);
+      border-radius: 20px; padding: 2.25rem 2rem;
+      display: flex; flex-wrap: wrap;
+      gap: 1.5rem 3rem;
+      justify-content: center; align-items: center;
+    }
+    .dato { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; }
+    .dato__label {
+      font-family: var(--font-cuerpo); font-weight: 500;
+      font-size: 0.7rem; color: var(--color-coral);
+      letter-spacing: 0.2em; text-transform: uppercase;
+    }
+    .dato__valor {
+      font-family: var(--font-titular); font-weight: 400;
+      font-size: 1.25rem; color: var(--color-crema); letter-spacing: -0.01em;
+    }
+    .dato--precio .dato__valor {
+      font-size: 1.5rem; color: var(--color-coral); font-weight: 500;
+    }
+    .sesiones__pago {
+      width: 100%; text-align: center;
+      font-size: 0.8125rem; color: var(--color-crema);
+      opacity: 0.65; margin-top: 0.5rem; letter-spacing: 0.02em;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(250, 246, 240, 0.12);
+    }
+
+    /* PARA QUIÉN */
+    .para-quien { background: var(--color-crema-warm); padding: var(--section-pad) 0; }
+    .para-quien__grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: start;
+      max-width: 1100px; margin: 0 auto;
+    }
+    @media (max-width: 900px) {
+      .para-quien__grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    .para-quien__card {
+      background: var(--color-blanco);
+      border-radius: 20px; padding: 2.5rem;
+      border: 1px solid var(--color-borde);
+    }
+    .para-quien__icon {
+      width: 48px; height: 48px;
+      background: var(--color-turquesa-pale);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .para-quien__card--limite .para-quien__icon { background: rgba(234, 134, 114, 0.15); }
+    .para-quien__title {
+      font-family: var(--font-titular); font-weight: 500;
+      font-size: 1.375rem; color: var(--color-navy);
+      margin-bottom: 1rem; letter-spacing: -0.01em;
+    }
+    .para-quien__card--limite .para-quien__title { color: var(--color-coral); }
+    .para-quien__text {
+      font-size: 0.9375rem; line-height: 1.65; color: var(--color-texto-suave);
+    }
+
+    /* CARLA */
+    .carla {
+      background: var(--color-navy); color: var(--color-crema);
+      padding: var(--section-pad) 0;
+      position: relative; overflow: hidden;
+    }
+    .carla__marca {
+      position: absolute; left: -15%; top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-titular); font-weight: 400;
+      font-size: clamp(20rem, 55vw, 60rem);
+      color: var(--color-navy-soft); opacity: 0.5;
+      pointer-events: none; user-select: none;
+      line-height: 1; z-index: 0; letter-spacing: -0.05em;
+    }
+    .carla__grid {
+      display: grid; grid-template-columns: 5fr 7fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    @media (max-width: 900px) { .carla__grid { grid-template-columns: 1fr; } }
+    .carla__foto-wrap { position: relative; }
+    .carla__foto {
+      width: 100%; max-width: 420px;
+      margin: 0 auto; border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+    .carla__foto img { width: 100%; height: auto; display: block; }
+    .carla__foto-deco {
+      position: absolute; bottom: -1rem; right: -1rem;
+      background: var(--color-coral);
+      padding: 0.875rem 1.25rem;
+      border-radius: 12px;
+      font-family: var(--font-titular); font-weight: 500;
+      font-size: 0.875rem; color: var(--color-blanco);
+      letter-spacing: 0.05em;
+      box-shadow: 0 10px 30px rgba(234, 134, 114, 0.4);
+    }
+    .carla__label {
+      display: block; font-size: 0.75rem; font-weight: 600;
+      color: var(--color-coral);
+      letter-spacing: 0.25em; text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .carla__nombre {
+      font-family: var(--font-titular); font-weight: 400;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      line-height: 1.05; color: var(--color-crema);
+      margin-bottom: 1rem; letter-spacing: -0.025em;
+    }
+    .carla__bajada {
+      font-family: var(--font-cuerpo); font-weight: 300;
+      font-size: 1rem; color: var(--color-crema);
+      opacity: 0.85; line-height: 1.6;
+      margin-bottom: 2rem; padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(250, 246, 240, 0.12);
+    }
+    .carla__credenciales {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-bottom: 2rem;
+    }
+    @media (max-width: 500px) { .carla__credenciales { grid-template-columns: 1fr; } }
+    .carla__credenciales li {
+      font-family: var(--font-cuerpo); font-weight: 300;
+      font-size: 0.9375rem; color: var(--color-crema);
+      opacity: 0.9; padding-left: 1.5rem;
+      position: relative; line-height: 1.5;
+    }
+    .carla__credenciales li::before {
+      content: ""; position: absolute;
+      left: 0; top: 0.625em;
+      width: 12px; height: 1px; background: var(--color-coral);
+    }
+    .carla__cierre {
+      font-family: var(--font-titular); font-style: italic; font-weight: 400;
+      font-size: clamp(1.0625rem, 1.8vw, 1.25rem);
+      color: var(--color-crema); line-height: 1.5;
+      padding-left: 1.25rem;
+      border-left: 3px solid var(--color-coral);
+    }
+
+    /* CTA FINAL */
+    .cta-final {
+      padding: var(--section-pad) 0;
+      background: linear-gradient(135deg, #3E8DA1, #EA8672, #E07688, #3E8DA1);
+      background-size: 400% 400%;
+      animation: gradiente 14s ease infinite;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    @keyframes gradiente {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .cta-final__label {
+      display: block;
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--color-crema);
+      letter-spacing: 0.3em; text-transform: uppercase;
+      margin-bottom: 1.5rem; opacity: 0.85;
+    }
+    .cta-final h2 {
+      font-family: var(--font-titular); font-weight: 400;
+      font-size: clamp(2.25rem, 5.5vw, 4rem);
+      color: var(--color-crema); margin-bottom: 2.5rem;
+      letter-spacing: -0.025em; line-height: 1.05;
+      max-width: 800px; margin-left: auto; margin-right: auto;
+    }
+    .cta-final__microcopy {
+      font-size: 0.9375rem; color: var(--color-crema);
+      opacity: 0.92; margin-top: 1.75rem;
+      max-width: 480px; margin-left: auto; margin-right: auto;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--color-navy-deep); color: var(--color-crema);
+      padding: 3rem 0;
+    }
+    .footer__grid {
+      display: flex; flex-direction: column;
+      gap: 1.5rem; align-items: center; text-align: center;
+    }
+    .footer__logo {
+      font-family: var(--font-titular); font-weight: 500;
+      font-size: 1.5rem; color: var(--color-crema); letter-spacing: -0.01em;
+    }
+    .footer__contacto {
+      display: flex; flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.875rem; color: var(--color-crema); opacity: 0.7;
+    }
+    .footer__contacto a:hover { opacity: 1; color: var(--color-coral); }
+    .footer__credit {
+      font-size: 0.75rem; color: var(--color-crema); opacity: 0.5;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(250, 246, 240, 0.08);
+      width: 100%; max-width: 400px;
+    }
+
+    /* CLASE PARA APARICIÓN PROGRESIVA SOLO SI GSAP CARGA */
+    .reveal-ready { opacity: 0; transform: translateY(20px); }
+    .revealed { opacity: 1; transform: translateY(0); transition: opacity 0.9s ease, transform 0.9s ease; }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="topbar__inner">
+      <span class="topbar__item"><strong class="topbar__highlight">Diagnóstico Familiar</strong></span>
+      <span class="topbar__sep"></span>
+      <span class="topbar__item">3 sesiones · informe escrito · plan personalizado</span>
+      <span class="topbar__sep"></span>
+      <span class="topbar__item">Online · Chile</span>
+    </div>
+  </div>
+
+  <nav class="nav" id="nav">
+    <div class="nav__container">
+      <a href="#" class="nav__logo">
+        nido<span class="nav__logo-tag">Conectar con sentido</span>
+      </a>
+      <a href="#test" class="btn btn--navy nav__cta">Test gratuito →</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <svg class="hero__deco" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path fill="#3E8DA1" d="M421.5,313.5Q397,377,343.5,418Q290,459,225,432.5Q160,406,118,353Q76,300,108.5,238Q141,176,200.5,143Q260,110,322,127Q384,144,419.5,202Q455,260,421.5,313.5Z"/>
+    </svg>
+
+    <div class="container">
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        Para padres con hijos entre 12 y 18 años
+      </div>
+
+      <h1 class="hero__titular">Cuando algo le pase, ¿va a <em>contártelo</em> a ti?</h1>
+
+      <p class="hero__quote">Antes de decidir si tu hijo necesita terapia, partamos por entender qué está pasando.</p>
+
+      <p class="hero__cuerpo">El Diagnóstico Familiar del Adolescente es un proceso clínico breve, de 3 sesiones, que te muestra cómo está hoy tu hijo o hija, qué está bloqueando la confianza en casa, y qué pasos concretos puedes dar para abrir esa puerta — antes de que la necesites con urgencia.</p>
+
+      <div class="hero__cta-group">
+        <a href="#test" class="btn btn--primary btn--large">
+          Empieza por el test gratuito (3 minutos)
+          <span class="btn__arrow">→</span>
+        </a>
+        <p class="hero__microcopy">3 sesiones · informe escrito · plan personalizado</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pensamientos">
+    <div class="container">
+      <span class="pensamientos__label">Tal vez te suena</span>
+
+      <p class="pensamientos__principal">No sé qué le pasa, antes éramos cercanos y ahora no me cuenta nada.</p>
+
+      <div class="pensamientos__grid">
+        <div class="pensamiento-card">
+          <span>Está todo el día encerrado y no sé si es la edad o algo más.</span>
+        </div>
+        <div class="pensamiento-card">
+          <span>Le pregunto cómo le fue y solo dice 'bien'. No sé si creerle.</span>
+        </div>
+        <div class="pensamiento-card">
+          <span>Tengo miedo de no estar viendo algo importante.</span>
+        </div>
+      </div>
+
+      <div class="pensamientos__cierre">
+        <p>No estás fallando. Estás en una etapa que nadie nos enseñó a navegar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="puente">
+    <div class="puente__marca" aria-hidden="true">nido</div>
+    <div class="container">
+      <span class="puente__label">Cambiar el orden</span>
+      <h2 class="puente__titular">Antes de decidir si tu hijo necesita terapia, partamos por entender qué está pasando.</h2>
+    </div>
+  </section>
+
+  <section class="por-que">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-header__label">Por qué un diagnóstico</span>
+        <h2 class="section-header__title">No más consejos genéricos</h2>
+      </header>
+
+      <div class="por-que__grid">
+        <article class="card-pq">
+          <span class="card-pq__num">01</span>
+          <h3 class="card-pq__title">Porque adivinar agota y los consejos genéricos no resuelven</h3>
+          <p class="card-pq__text">La mayoría de los padres llegan a consulta cuando el problema ya es grande. Y los libros, podcasts o consejos en redes asumen que ya sabes qué pasa en tu casa específicamente.</p>
+        </article>
+
+        <article class="card-pq">
+          <span class="card-pq__num">02</span>
+          <h3 class="card-pq__title">Primero entendemos, después decidimos</h3>
+          <p class="card-pq__text">El Diagnóstico Familiar del Adolescente invierte el orden habitual: primero entendemos qué está pasando con tu hijo y con la comunicación familiar. Después decidimos juntos qué necesitas.</p>
+        </article>
+
+        <article class="card-pq">
+          <span class="card-pq__num">03</span>
+          <h3 class="card-pq__title">Dos caminos posibles, ambos claros</h3>
+          <p class="card-pq__text">Para muchas familias, aplicar el plan personalizado que te entrego es suficiente para mover el clima en casa.</p>
+          <p class="card-pq__text">Para otras, el diagnóstico identifica que el adolescente necesita acompañamiento individual, que la familia se beneficiaría de un proceso más largo, o que hay señales que requieren atención especializada. En esos casos, te oriento hacia el siguiente paso.</p>
+        </article>
+      </div>
+
+      <div class="card-pq--final">
+        <p>En ambos casos, dejas de adivinar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sesiones">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-header__label">El proceso</span>
+        <h2 class="section-header__title">Las 3 sesiones</h2>
+      </header>
+
+      <div class="sesiones__grid">
+        <article class="card-sesion">
+          <div class="card-sesion__top">
+            <span class="card-sesion__num">01</span>
+            <span class="card-sesion__badge">60 min</span>
+          </div>
+          <h3 class="card-sesion__title">Padres y adolescente</h3>
+          <p class="card-sesion__text">Comenzamos con los padres para ordenar lo que están viendo. Luego se suma tu hijo o hija (si lo desea), para presentar el proceso y observar la dinámica familiar en vivo. Esta primera sesión deja claro al adolescente que la siguiente es un espacio suyo.</p>
+        </article>
+
+        <article class="card-sesion">
+          <div class="card-sesion__top">
+            <span class="card-sesion__num">02</span>
+            <span class="card-sesion__badge">60 min</span>
+          </div>
+          <h3 class="card-sesion__title">Tu hijo o hija</h3>
+          <p class="card-sesion__text">Un espacio confidencial donde tu adolescente puede expresarse con libertad. Aquí escucho cómo está viviendo esta etapa, qué le preocupa, qué le cuesta decir en casa. Este es el momento que más cambia la mirada.</p>
+        </article>
+
+        <article class="card-sesion">
+          <div class="card-sesion__top">
+            <span class="card-sesion__num">03</span>
+            <span class="card-sesion__badge">60 min, dos tramos</span>
+          </div>
+          <h3 class="card-sesion__title">Devolución</h3>
+          <p class="card-sesion__text">Primero 30 minutos con tu hijo o hija: este es su proceso y merece su devolución. Luego 30 minutos con los padres: entrega del informe escrito y recorrido por el plan de acción, con frases concretas y orientación clara sobre qué hacer y qué evitar.</p>
+        </article>
+      </div>
+
+      <div class="sesiones__informe">
+        <div class="sesiones__informe-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#FAF6F0" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M14 2v6h6M8 13h8M8 17h8M8 9h2" stroke="#FAF6F0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h3 class="sesiones__informe-title">+ Informe escrito personalizado <span>(4-6 páginas)</span></h3>
+          <p class="sesiones__informe-text">Lectura del vínculo, patrones identificados, señales a observar y hoja de ruta.</p>
+        </div>
+      </div>
+
+      <div class="sesiones__datos">
+        <div class="dato">
+          <span class="dato__label">Duración</span>
+          <span class="dato__valor">2 a 3 semanas</span>
+        </div>
+        <div class="dato">
+          <span class="dato__label">Modalidad</span>
+          <span class="dato__valor">Online</span>
+        </div>
+        <div class="dato dato--precio">
+          <span class="dato__label">Inversión</span>
+          <span class="dato__valor">$200.000 CLP</span>
+        </div>
+        <p class="sesiones__pago">50% al agendar · 50% antes de la devolución</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="para-quien">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-header__label">Para quién es este proceso</span>
+        <h2 class="section-header__title">¿Es para tu familia?</h2>
+      </header>
+
+      <div class="para-quien__grid">
+        <div class="para-quien__card para-quien__card--ok">
+          <div class="para-quien__icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none">
+              <path d="M5 12l5 5L20 7" stroke="#3E8DA1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="para-quien__title">Sí es para ti si...</h3>
+          <p class="para-quien__text">Para padres con hijos entre 12 y 18 años que notan cambios que no saben cómo leer: aislamiento, irritabilidad, distancia, conflictos recurrentes o señales que los tienen preocupados.</p>
+        </div>
+
+        <div class="para-quien__card para-quien__card--limite">
+          <div class="para-quien__icon">
+            <svg viewBox="0 0 32 32" fill="none" width="24" height="24">
+              <circle cx="16" cy="16" r="13" stroke="#EA8672" stroke-width="1.8"/>
+              <line x1="16" y1="9" x2="16" y2="18" stroke="#EA8672" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="16" cy="22.5" r="1.3" fill="#EA8672"/>
+            </svg>
+          </div>
+          <h3 class="para-quien__title">Importante</h3>
+          <p class="para-quien__text">Este proceso no reemplaza atención de urgencia ni tratamiento especializado. Si en tu casa hay señales de riesgo inmediato — autolesiones, ideación suicida, violencia, abuso o consumo problemático — escríbeme directamente y te oriento hacia la derivación adecuada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="carla">
+    <div class="carla__marca" aria-hidden="true">nido</div>
+    <div class="container">
+      <div class="carla__grid">
+        <div class="carla__foto-wrap">
+          <div class="carla__foto">
+            <img src="https://i.imgur.com/lr1ym9w.png" alt="Carla Romo Salcedo, psicóloga clínica PUC" loading="lazy">
+          </div>
+          <div class="carla__foto-deco">+25 años</div>
+        </div>
+
+        <div class="carla__contenido">
+          <span class="carla__label">Sobre Carla</span>
+          <h2 class="carla__nombre">Carla Romo Salcedo</h2>
+          <p class="carla__bajada">
+            Psicóloga clínica · Pontificia Universidad Católica de Chile<br>
+            Mamá de adolescentes
+          </p>
+          <ul class="carla__credenciales">
+            <li>+25 años acompañando procesos humanos</li>
+            <li>Formación en prevención de bullying, depresión y suicidio adolescente</li>
+            <li>Certificación Programa PEERS</li>
+            <li>Creadora del Método NIDO®</li>
+          </ul>
+          <p class="carla__cierre"><em>Diseñé este diagnóstico para que dejes de adivinar antes de que el problema sea grande.</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final" id="test">
+    <div class="container">
+      <span class="cta-final__label">El primer paso</span>
+      <h2>¿Lista para dejar de adivinar?</h2>
+      <a href="#test" class="btn btn--crema btn--large">
+        Empieza por el test gratuito (3 minutos)
+        <span class="btn__arrow">→</span>
+      </a>
+      <p class="cta-final__microcopy">Te dice si lo que ves en casa es parte normal de la edad o si conviene mirar con más calma. Sin compromiso.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <p class="footer__logo">nido</p>
+        <div class="footer__contacto">
+          <a href="mailto:carla.romo@conectarconsentido.com">carla.romo@conectarconsentido.com</a>
+          <a href="https://instagram.com/conectar_consentido" target="_blank" rel="noopener">@conectar_consentido</a>
+        </div>
+        <p class="footer__credit">© 2026 Carla Romo Salcedo · Método NIDO®</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // SOLO ANIMACIONES DE BAJO RIESGO
+    // Las tarjetas y secciones ya son visibles por CSS.
+    // Si GSAP carga, agregamos un efecto sutil. Si falla, todo sigue visible.
+
+    try {
+      if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+        });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+      }
+    } catch(e) { console.log('Lenis no disponible, scroll nativo'); }
+
+    try {
+      if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Blob respirando en hero (loop, sin riesgo de invisibilidad)
+        gsap.to('.hero__deco', {
+          scale: 1.08, duration: 5,
+          ease: 'sine.inOut', yoyo: true, repeat: -1,
+          transformOrigin: 'center center'
+        });
+
+        // SUBTLE: efecto de aparición SOLO con transform/opacity desde valores cercanos
+        // No usamos opacity 0 inicial — empezamos en 0.001 visibilidad y solo "respiramos" el contenido
+        gsap.fromTo('.card-pq',
+          { y: 15 },
+          {
+            y: 0, duration: 0.8,
+            stagger: 0.1, ease: 'power2.out',
+            scrollTrigger: { trigger: '.por-que__grid', start: 'top 85%', once: true }
+          }
+        );
+
+        gsap.fromTo('.card-sesion',
+          { y: 15 },
+          {
+            y: 0, duration: 0.8,
+            stagger: 0.1, ease: 'power2.out',
+            scrollTrigger: { trigger: '.sesiones__grid', start: 'top 85%', once: true }
+          }
+        );
+
+        gsap.fromTo('.pensamiento-card',
+          { y: 15 },
+          {
+            y: 0, duration: 0.8,
+            stagger: 0.15, ease: 'power2.out',
+            scrollTrigger: { trigger: '.pensamientos__grid', start: 'top 85%', once: true }
+          }
+        );
+      }
+    } catch(e) { console.log('GSAP no disponible, sin animaciones'); }
+  </script>
+
+</body>
+</html>
