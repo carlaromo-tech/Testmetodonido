@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diagnóstico Familiar del Adolescente — Carla Romo Salcedo</title>
-  <meta name="description" content="[PENDIENTE: definir meta description]">
+  <meta name="description" content="Diagnóstico Familiar del Adolescente — 3 sesiones con informe personalizado para entender qué está pasando con tu hijo. Online · Chile.">
+  <meta name="color-scheme" content="light">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +30,7 @@
       --color-blanco: #FFFFFF;
       --color-texto: #1E2D3D;
       --color-texto-suave: #4A5B6E;
-      --color-texto-muted: #6B7B8E;
+      --color-texto-muted: #4F5F6E;
       --color-borde: rgba(30, 45, 61, 0.08);
       --font-titular: 'Fraunces', Georgia, serif;
       --font-cuerpo: 'Inter', system-ui, sans-serif;
@@ -108,9 +109,11 @@
       display: flex; justify-content: space-between; align-items: center;
     }
     .nav__logo {
-      font-family: var(--font-titular);
-      font-weight: 500; font-size: 1.375rem;
-      color: var(--color-navy); letter-spacing: -0.01em;
+      display: flex; align-items: center;
+      gap: 0.75rem;
+    }
+    .nav__logo img {
+      height: 36px; width: auto; display: block;
     }
     .nav__logo-tag {
       font-family: var(--font-cuerpo);
@@ -160,10 +163,9 @@
       position: relative; overflow: hidden;
     }
     .hero__deco {
-      position: absolute; top: 5%; right: -8%;
-      width: 45vw; max-width: 540px;
-      height: 45vw; max-height: 540px;
-      opacity: 0.18; pointer-events: none; z-index: 1;
+      position: absolute; top: 5%; right: -4%;
+      width: 42vw; max-width: 500px;
+      opacity: 0.07; pointer-events: none; z-index: 1;
     }
     .hero__badge {
       display: inline-flex; align-items: center; gap: 0.625rem;
@@ -188,7 +190,8 @@
       font-family: var(--font-titular);
       font-weight: 400;
       font-size: clamp(2.5rem, 7vw, 5.5rem);
-      line-height: 0.98; letter-spacing: -0.035em;
+      line-height: 1.05; letter-spacing: -0.035em;
+      text-wrap: balance;
       color: var(--color-navy);
       margin-bottom: 2.5rem; max-width: 14ch;
     }
@@ -198,12 +201,11 @@
     .hero__quote {
       font-family: var(--font-titular); font-style: italic;
       font-weight: 400;
-      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      font-size: clamp(1.25rem, 2.2vw, 1.625rem);
       line-height: 1.4; color: var(--color-texto-suave);
       max-width: 540px;
-      padding: 1.25rem 0 1.25rem 1.5rem;
-      border-left: 3px solid var(--color-coral);
       margin-bottom: 2.5rem;
+      text-wrap: balance;
     }
     .hero__cuerpo {
       font-size: 1.0625rem; line-height: 1.7;
@@ -238,6 +240,7 @@
       max-width: 880px; margin: 0 auto 4rem;
       text-align: center; letter-spacing: -0.015em;
       position: relative; padding: 0 2rem;
+      text-wrap: balance;
     }
     .pensamientos__principal::before,
     .pensamientos__principal::after {
@@ -255,7 +258,7 @@
     /* CAMBIO CRÍTICO: las tarjetas son VISIBLES por defecto */
     .pensamiento-card {
       background: var(--color-blanco);
-      border-radius: 12px; padding: 1.75rem;
+      border-radius: 8px; padding: 1.75rem;
       box-shadow: 0 2px 16px rgba(30, 45, 61, 0.04);
       border: 1px solid var(--color-borde);
       font-family: var(--font-titular); font-style: italic; font-weight: 400;
@@ -310,6 +313,7 @@
       line-height: 1.2; color: var(--color-crema);
       max-width: 900px; margin: 0 auto;
       text-align: center; letter-spacing: -0.02em;
+      text-wrap: balance;
     }
 
     /* POR QUÉ */
@@ -326,6 +330,7 @@
       font-family: var(--font-titular); font-weight: 400;
       font-size: clamp(2rem, 4.5vw, 3.25rem);
       line-height: 1.1; color: var(--color-navy); letter-spacing: -0.025em;
+      text-wrap: balance;
     }
     .por-que__grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -336,7 +341,7 @@
     /* CAMBIO CRÍTICO: cards visibles por defecto */
     .card-pq {
       background: var(--color-blanco);
-      border: 1px solid var(--color-borde); border-radius: 16px;
+      border: 1px solid var(--color-borde); border-radius: 12px;
       padding: 2.5rem 2rem;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative; overflow: hidden;
@@ -442,7 +447,7 @@
     }
     .sesiones__informe-icon {
       width: 60px; height: 60px;
-      background: var(--color-navy); border-radius: 14px;
+      background: var(--color-navy); border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
@@ -507,13 +512,12 @@
       border: 1px solid var(--color-borde);
     }
     .para-quien__icon {
-      width: 48px; height: 48px;
-      background: var(--color-turquesa-pale);
-      border-radius: 12px;
+      width: 40px; height: 40px;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 1.5rem;
     }
-    .para-quien__card--limite .para-quien__icon { background: rgba(234, 134, 114, 0.15); }
+    .para-quien__icon svg { width: 32px; height: 32px; }
+    .para-quien__card--limite .para-quien__icon { opacity: 0.9; }
     .para-quien__title {
       font-family: var(--font-titular); font-weight: 500;
       font-size: 1.375rem; color: var(--color-navy);
@@ -549,7 +553,7 @@
     .carla__foto-wrap { position: relative; }
     .carla__foto {
       width: 100%; max-width: 420px;
-      margin: 0 auto; border-radius: 16px;
+      margin: 0 auto; border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
       position: relative;
@@ -559,7 +563,7 @@
       position: absolute; bottom: -1rem; right: -1rem;
       background: var(--color-coral);
       padding: 0.875rem 1.25rem;
-      border-radius: 12px;
+      border-radius: 8px;
       font-family: var(--font-titular); font-weight: 500;
       font-size: 0.875rem; color: var(--color-blanco);
       letter-spacing: 0.05em;
@@ -602,10 +606,10 @@
     }
     .carla__cierre {
       font-family: var(--font-titular); font-style: italic; font-weight: 400;
-      font-size: clamp(1.0625rem, 1.8vw, 1.25rem);
+      font-size: clamp(1.125rem, 1.8vw, 1.375rem);
       color: var(--color-crema); line-height: 1.5;
-      padding-left: 1.25rem;
-      border-left: 3px solid var(--color-coral);
+      opacity: 0.9;
+      text-wrap: balance;
     }
 
     /* CTA FINAL */
@@ -672,6 +676,56 @@
     /* CLASE PARA APARICIÓN PROGRESIVA SOLO SI GSAP CARGA */
     .reveal-ready { opacity: 0; transform: translateY(20px); }
     .revealed { opacity: 1; transform: translateY(0); transition: opacity 0.9s ease, transform 0.9s ease; }
+
+    /* SCROLL: hero line reveal — el wrapper corta el texto durante la animación */
+    .hero__line-wrap {
+      display: block;
+      overflow: hidden;
+      padding-bottom: 0.08em; /* buffer para descenders */
+    }
+    .hero__line {
+      display: block;
+    }
+
+    /* SCROLL: nav adapts to dark sections (puente, carla) */
+    .nav {
+      transition: background 0.45s ease, border-color 0.45s ease;
+    }
+    .nav--dark {
+      background: rgba(22, 34, 48, 0.93);
+      border-color: rgba(250, 246, 240, 0.08);
+    }
+    .nav--dark .nav__logo img {
+      filter: brightness(0) invert(1);
+    }
+    .nav--dark .nav__logo-tag {
+      color: rgba(250, 246, 240, 0.45);
+      border-left-color: rgba(250, 246, 240, 0.1);
+    }
+    .nav--dark .btn--navy {
+      background: rgba(250, 246, 240, 0.1);
+      color: var(--color-crema);
+    }
+    .nav--dark .btn--navy:hover {
+      background: rgba(250, 246, 240, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* ACCESIBILIDAD: foco visible para navegación por teclado */
+    :focus-visible {
+      outline: 3px solid var(--color-turquesa);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ACCESIBILIDAD: respeto por prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 
@@ -690,16 +744,15 @@
   <nav class="nav" id="nav">
     <div class="nav__container">
       <a href="#" class="nav__logo">
-        nido<span class="nav__logo-tag">Conectar con sentido</span>
+        <img src="imagenes/logo_metodo_nido_transparente.png" alt="Método Nido">
+        <span class="nav__logo-tag">Conectar con sentido</span>
       </a>
       <a href="#test" class="btn btn--navy nav__cta">Test gratuito →</a>
     </div>
   </nav>
 
   <section class="hero">
-    <svg class="hero__deco" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path fill="#3E8DA1" d="M421.5,313.5Q397,377,343.5,418Q290,459,225,432.5Q160,406,118,353Q76,300,108.5,238Q141,176,200.5,143Q260,110,322,127Q384,144,419.5,202Q455,260,421.5,313.5Z"/>
-    </svg>
+    <img class="hero__deco" src="imagenes/logo_metodo_nido_transparente.png" alt="" aria-hidden="true">
 
     <div class="container">
       <div class="hero__badge">
@@ -707,7 +760,10 @@
         Para padres con hijos entre 12 y 18 años
       </div>
 
-      <h1 class="hero__titular">Cuando algo le pase, ¿va a <em>contártelo</em> a ti?</h1>
+      <h1 class="hero__titular">
+        <span class="hero__line-wrap"><span class="hero__line">Cuando algo le pase,</span></span>
+        <span class="hero__line-wrap"><span class="hero__line">¿va a <em>contártelo</em> a ti?</span></span>
+      </h1>
 
       <p class="hero__quote">Antes de decidir si tu hijo necesita terapia, partamos por entender qué está pasando.</p>
 
@@ -895,7 +951,7 @@
       <div class="carla__grid">
         <div class="carla__foto-wrap">
           <div class="carla__foto">
-            <img src="https://i.imgur.com/lr1ym9w.png" alt="Carla Romo Salcedo, psicóloga clínica PUC" loading="lazy">
+            <img src="imagenes/carla-romo.png" alt="Carla Romo Salcedo, psicóloga clínica PUC" width="420" height="520" loading="lazy">
           </div>
           <div class="carla__foto-deco">+25 años</div>
         </div>
@@ -962,44 +1018,110 @@
     } catch(e) { console.log('Lenis no disponible, scroll nativo'); }
 
     try {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
       if (typeof gsap !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
-        // Blob respirando en hero (loop, sin riesgo de invisibilidad)
+        // ── NAV OSCURA en secciones con fondo navy ──────────────────────────
+        const navEl = document.getElementById('nav');
+        gsap.utils.toArray('.puente, .carla').forEach(section => {
+          ScrollTrigger.create({
+            trigger: section,
+            start: 'top 64px',
+            end: 'bottom 64px',
+            onEnter: () => navEl.classList.add('nav--dark'),
+            onLeave: () => navEl.classList.remove('nav--dark'),
+            onEnterBack: () => navEl.classList.add('nav--dark'),
+            onLeaveBack: () => navEl.classList.remove('nav--dark'),
+          });
+        });
+
+        if (!prefersReducedMotion) {
+
+        // ── 1. HERO: entrada dramática en secuencia ──────────────────────────
+        gsap.set('.hero__badge', { opacity: 0, y: 10 });
+        gsap.set('.hero__line', { y: '108%' });
+        gsap.set('.hero__quote', { opacity: 0, y: 18 });
+        gsap.set('.hero__cuerpo', { opacity: 0, y: 14 });
+        gsap.set('.hero__cta-group', { opacity: 0, y: 10 });
+
+        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        heroTl
+          .to('.hero__badge',    { opacity: 1, y: 0, duration: 0.65, delay: 0.1 })
+          .to('.hero__line',     { y: '0%', duration: 1.0, stagger: 0.18 }, '-=0.25')
+          .to('.hero__quote',    { opacity: 1, y: 0, duration: 0.75 }, '-=0.45')
+          .to('.hero__cuerpo',   { opacity: 1, y: 0, duration: 0.65 }, '-=0.45')
+          .to('.hero__cta-group',{ opacity: 1, y: 0, duration: 0.55 }, '-=0.4');
+
+        // ── 2. HERO: logo de fondo respira suavemente ────────────────────────
         gsap.to('.hero__deco', {
-          scale: 1.08, duration: 5,
+          scale: 1.06, duration: 6,
           ease: 'sine.inOut', yoyo: true, repeat: -1,
           transformOrigin: 'center center'
         });
 
-        // SUBTLE: efecto de aparición SOLO con transform/opacity desde valores cercanos
-        // No usamos opacity 0 inicial — empezamos en 0.001 visibilidad y solo "respiramos" el contenido
-        gsap.fromTo('.card-pq',
-          { y: 15 },
-          {
-            y: 0, duration: 0.8,
-            stagger: 0.1, ease: 'power2.out',
-            scrollTrigger: { trigger: '.por-que__grid', start: 'top 85%', once: true }
-          }
-        );
-
-        gsap.fromTo('.card-sesion',
-          { y: 15 },
-          {
-            y: 0, duration: 0.8,
-            stagger: 0.1, ease: 'power2.out',
-            scrollTrigger: { trigger: '.sesiones__grid', start: 'top 85%', once: true }
-          }
-        );
-
+        // ── 3. PENSAMIENTOS: tarjetas con stagger ───────────────────────────
+        gsap.from('.pensamientos__principal', {
+          opacity: 0, y: 24, duration: 0.9,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: '.pensamientos__principal', start: 'top 82%', once: true }
+        });
         gsap.fromTo('.pensamiento-card',
-          { y: 15 },
-          {
-            y: 0, duration: 0.8,
-            stagger: 0.15, ease: 'power2.out',
-            scrollTrigger: { trigger: '.pensamientos__grid', start: 'top 85%', once: true }
-          }
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.75, stagger: 0.15, ease: 'power2.out',
+            scrollTrigger: { trigger: '.pensamientos__grid', start: 'top 85%', once: true } }
         );
+
+        // ── 4. PUENTE: parallax en la marca tipográfica gigante ──────────────
+        gsap.to('.puente__marca', {
+          y: '-22%', ease: 'none',
+          scrollTrigger: { trigger: '.puente', start: 'top bottom', end: 'bottom top', scrub: 1.2 }
+        });
+        gsap.from('.puente__titular', {
+          opacity: 0, y: 32, duration: 1.0, ease: 'power2.out',
+          scrollTrigger: { trigger: '.puente', start: 'top 60%', once: true }
+        });
+
+        // ── 5. POR QUÉ: cards entran con stagger ────────────────────────────
+        gsap.fromTo('.card-pq',
+          { y: 20 },
+          { y: 0, duration: 0.8, stagger: 0.12, ease: 'power2.out',
+            scrollTrigger: { trigger: '.por-que__grid', start: 'top 85%', once: true } }
+        );
+
+        // ── 6. SESIONES: cards con stagger ──────────────────────────────────
+        gsap.fromTo('.card-sesion',
+          { y: 20 },
+          { y: 0, duration: 0.8, stagger: 0.12, ease: 'power2.out',
+            scrollTrigger: { trigger: '.sesiones__grid', start: 'top 85%', once: true } }
+        );
+
+        // ── 7. CARLA: parallax en marca y foto ──────────────────────────────
+        gsap.to('.carla__marca', {
+          y: '-18%', ease: 'none',
+          scrollTrigger: { trigger: '.carla', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+        });
+        gsap.to('.carla__foto', {
+          y: '-28px', ease: 'none',
+          scrollTrigger: { trigger: '.carla', start: 'top bottom', end: 'bottom top', scrub: 1.8 }
+        });
+        gsap.from('.carla__credenciales li', {
+          opacity: 0, x: -14, duration: 0.5, stagger: 0.09, ease: 'power2.out',
+          scrollTrigger: { trigger: '.carla__credenciales', start: 'top 80%', once: true }
+        });
+
+        // ── 8. CTA FINAL: h2 aparece desde abajo con leve escala ────────────
+        gsap.from('.cta-final h2', {
+          opacity: 0, scale: 0.96, y: 20, duration: 1.0, ease: 'power3.out',
+          scrollTrigger: { trigger: '.cta-final', start: 'top 68%', once: true }
+        });
+        gsap.from('.cta-final .btn', {
+          opacity: 0, y: 14, duration: 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: '.cta-final', start: 'top 60%', once: true }
+        });
+
+        } // end if !prefersReducedMotion
       }
     } catch(e) { console.log('GSAP no disponible, sin animaciones'); }
   </script>
