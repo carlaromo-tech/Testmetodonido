@@ -669,9 +669,10 @@
       display: flex; flex-direction: column;
       gap: 1.5rem; align-items: center; text-align: center;
     }
-    .footer__logo {
-      font-family: var(--font-titular); font-weight: 500;
-      font-size: 1.5rem; color: var(--color-crema); letter-spacing: -0.01em;
+    .footer__logo img {
+      height: 52px; width: auto; display: block;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
     }
     .footer__contacto {
       display: flex; flex-direction: column;
@@ -1003,7 +1004,9 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
-        <p class="footer__logo">nido</p>
+        <div class="footer__logo">
+          <img src="imagenes/logo_metodo_nido_transparente.png" alt="Método Nido">
+        </div>
         <div class="footer__contacto">
           <a href="mailto:carla.romo@conectarconsentido.com">carla.romo@conectarconsentido.com</a>
           <a href="https://instagram.com/conectar_consentido" target="_blank" rel="noopener">@conectar_consentido</a>
