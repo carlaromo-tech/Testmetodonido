@@ -113,7 +113,7 @@
       gap: 0.75rem;
     }
     .nav__logo img {
-      height: 36px; width: auto; display: block;
+      height: 48px; width: auto; display: block;
     }
     .nav__logo-tag {
       font-family: var(--font-cuerpo);
@@ -366,9 +366,9 @@
       transition: transform 0.5s ease;
     }
     .card-pq:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(30, 45, 61, 0.08);
-      border-color: rgba(62, 141, 161, 0.3);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 28px 56px rgba(30, 45, 61, 0.13);
+      border-color: rgba(62, 141, 161, 0.4);
     }
     .card-pq:hover::before { transform: scaleX(1); }
     .card-pq__num {
@@ -419,8 +419,8 @@
       border: 1px solid var(--color-borde);
     }
     .card-sesion:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 24px 48px rgba(30, 45, 61, 0.1);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 32px 60px rgba(30, 45, 61, 0.14);
     }
     .card-sesion__top {
       display: flex; justify-content: space-between; align-items: flex-start;
@@ -1050,92 +1050,170 @@
           });
         });
 
-        // ── dur: 0 para usuarios con reduced-motion (snap instantáneo) ──────
-        const dur = prefersReducedMotion ? 0 : 1;
+        const rm = prefersReducedMotion;
+        const d = rm ? 0.01 : 1; // duración base — instantáneo o animado
 
-        // ── 1. HERO: entrada en secuencia (siempre corre) ────────────────────
-        gsap.set('.hero__badge',    { opacity: 0, y: prefersReducedMotion ? 0 : 10 });
-        gsap.set('.hero__line',     { y: prefersReducedMotion ? '0%' : '108%' });
-        gsap.set('.hero__quote',    { opacity: 0, y: prefersReducedMotion ? 0 : 18 });
-        gsap.set('.hero__cuerpo',   { opacity: 0, y: prefersReducedMotion ? 0 : 14 });
-        gsap.set('.hero__cta-group',{ opacity: 0, y: prefersReducedMotion ? 0 : 10 });
+        // ════════════════════════════════════════════════════
+        // HERO — entrada cinematográfica (siempre visible)
+        // ════════════════════════════════════════════════════
+        gsap.set('.hero__badge',     { opacity: 0, x: rm ? 0 : -24, scale: rm ? 1 : 0.9 });
+        gsap.set('.hero__titular::before', {}); // pseudo no animable por GSAP — ignorar
+        gsap.set('.hero__line',      { y: rm ? '0%' : '110%' });
+        gsap.set('.hero__quote',     { opacity: 0, x: rm ? 0 : -20 });
+        gsap.set('.hero__cuerpo',    { opacity: 0, y: rm ? 0 : 22 });
+        gsap.set('.hero__cta-group', { opacity: 0, y: rm ? 0 : 18, scale: rm ? 1 : 0.96 });
+        gsap.set('.hero__deco',      { opacity: 0, scale: rm ? 1 : 1.1 });
 
-        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
         heroTl
-          .to('.hero__badge',    { opacity: 1, y: 0, duration: dur * 0.65, delay: prefersReducedMotion ? 0 : 0.1 })
-          .to('.hero__line',     { y: '0%', duration: dur * 1.0, stagger: dur * 0.18 }, '-=' + (dur * 0.25))
-          .to('.hero__quote',    { opacity: 1, y: 0, duration: dur * 0.75 }, '-=' + (dur * 0.45))
-          .to('.hero__cuerpo',   { opacity: 1, y: 0, duration: dur * 0.65 }, '-=' + (dur * 0.45))
-          .to('.hero__cta-group',{ opacity: 1, y: 0, duration: dur * 0.55 }, '-=' + (dur * 0.4));
+          .to('.hero__deco',      { opacity: 0.11, scale: 1, duration: d * 1.2, delay: rm ? 0 : 0.05 })
+          .to('.hero__badge',     { opacity: 1, x: 0, scale: 1, duration: d * 0.7 }, rm ? 0 : 0.1)
+          .to('.hero__line',      { y: '0%', duration: d * 1.1, stagger: d * 0.22, ease: 'power4.out' }, rm ? 0 : 0.3)
+          .to('.hero__quote',     { opacity: 1, x: 0, duration: d * 0.8 }, rm ? 0 : `-=${d * 0.3}`)
+          .to('.hero__cuerpo',    { opacity: 1, y: 0, duration: d * 0.7 }, rm ? 0 : `-=${d * 0.5}`)
+          .to('.hero__cta-group', { opacity: 1, y: 0, scale: 1, duration: d * 0.65 }, rm ? 0 : `-=${d * 0.45}`);
 
-        // ── 2. PENSAMIENTOS: principal + tarjetas (siempre corre) ───────────
+        // ════════════════════════════════════════════════════
+        // PENSAMIENTOS — label + cita principal + 3 cards
+        // ════════════════════════════════════════════════════
+        gsap.from('.pensamientos__label', {
+          opacity: 0, y: rm ? 0 : 16, duration: d * 0.6, ease: 'power3.out',
+          scrollTrigger: { trigger: '.pensamientos', start: 'top 78%', once: true }
+        });
         gsap.from('.pensamientos__principal', {
-          opacity: 0, y: prefersReducedMotion ? 0 : 24, duration: dur * 0.9,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: '.pensamientos__principal', start: 'top 82%', once: true }
+          opacity: 0, y: rm ? 0 : 36, scale: rm ? 1 : 0.97, duration: d * 1.0, ease: 'power3.out',
+          scrollTrigger: { trigger: '.pensamientos__principal', start: 'top 80%', once: true }
         });
         gsap.fromTo('.pensamiento-card',
-          { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
-          { opacity: 1, y: 0, duration: dur * 0.75, stagger: dur * 0.15, ease: 'power2.out',
-            scrollTrigger: { trigger: '.pensamientos__grid', start: 'top 85%', once: true } }
+          { opacity: 0, y: rm ? 0 : 48, scale: rm ? 1 : 0.94 },
+          { opacity: 1, y: 0, scale: 1, duration: d * 0.85, stagger: d * 0.18, ease: 'power3.out',
+            scrollTrigger: { trigger: '.pensamientos__grid', start: 'top 82%', once: true } }
         );
+        gsap.from('.pensamientos__cierre p', {
+          opacity: 0, y: rm ? 0 : 20, duration: d * 0.8, ease: 'power2.out',
+          scrollTrigger: { trigger: '.pensamientos__cierre', start: 'top 85%', once: true }
+        });
 
-        // ── 3. POR QUÉ + SESIONES: cards (siempre corre) ────────────────────
+        // ════════════════════════════════════════════════════
+        // SECTION HEADERS — label badge + título (todas)
+        // ════════════════════════════════════════════════════
+        gsap.utils.toArray('.section-header__label').forEach(el => {
+          gsap.from(el, {
+            opacity: 0, x: rm ? 0 : -20, scale: rm ? 1 : 0.85, duration: d * 0.6, ease: 'back.out(1.4)',
+            scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+          });
+        });
+        gsap.utils.toArray('.section-header__title').forEach(el => {
+          gsap.from(el, {
+            opacity: 0, y: rm ? 0 : 30, duration: d * 0.85, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 82%', once: true }
+          });
+        });
+
+        // ════════════════════════════════════════════════════
+        // POR QUÉ — números grandes + cards
+        // ════════════════════════════════════════════════════
+        gsap.fromTo('.card-pq__num',
+          { opacity: 0, scale: rm ? 1 : 0.6, y: rm ? 0 : 20 },
+          { opacity: 1, scale: 1, y: 0, duration: d * 0.7, stagger: d * 0.15, ease: 'back.out(1.2)',
+            scrollTrigger: { trigger: '.por-que__grid', start: 'top 80%', once: true } }
+        );
         gsap.fromTo('.card-pq',
-          { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
-          { opacity: 1, y: 0, duration: dur * 0.8, stagger: dur * 0.12, ease: 'power2.out',
-            scrollTrigger: { trigger: '.por-que__grid', start: 'top 85%', once: true } }
+          { opacity: 0, y: rm ? 0 : 50, scale: rm ? 1 : 0.95 },
+          { opacity: 1, y: 0, scale: 1, duration: d * 0.85, stagger: d * 0.14, ease: 'power3.out',
+            scrollTrigger: { trigger: '.por-que__grid', start: 'top 82%', once: true } }
+        );
+        gsap.from('.card-pq--final p', {
+          opacity: 0, scale: rm ? 1 : 0.95, duration: d * 0.8, ease: 'power2.out',
+          scrollTrigger: { trigger: '.card-pq--final', start: 'top 85%', once: true }
+        });
+
+        // ════════════════════════════════════════════════════
+        // SESIONES — números + cards + informe + datos
+        // ════════════════════════════════════════════════════
+        gsap.fromTo('.card-sesion__num',
+          { opacity: 0, scale: rm ? 1 : 0.5, rotation: rm ? 0 : -8 },
+          { opacity: 1, scale: 1, rotation: 0, duration: d * 0.7, stagger: d * 0.16, ease: 'back.out(1.5)',
+            scrollTrigger: { trigger: '.sesiones__grid', start: 'top 80%', once: true } }
         );
         gsap.fromTo('.card-sesion',
-          { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
-          { opacity: 1, y: 0, duration: dur * 0.8, stagger: dur * 0.12, ease: 'power2.out',
-            scrollTrigger: { trigger: '.sesiones__grid', start: 'top 85%', once: true } }
+          { opacity: 0, y: rm ? 0 : 55, scale: rm ? 1 : 0.95 },
+          { opacity: 1, y: 0, scale: 1, duration: d * 0.88, stagger: d * 0.16, ease: 'power3.out',
+            scrollTrigger: { trigger: '.sesiones__grid', start: 'top 82%', once: true } }
+        );
+        gsap.from('.sesiones__informe', {
+          opacity: 0, y: rm ? 0 : 30, duration: d * 0.75, ease: 'power2.out',
+          scrollTrigger: { trigger: '.sesiones__informe', start: 'top 85%', once: true }
+        });
+        gsap.fromTo('.dato',
+          { opacity: 0, y: rm ? 0 : 24 },
+          { opacity: 1, y: 0, duration: d * 0.6, stagger: d * 0.1, ease: 'power2.out',
+            scrollTrigger: { trigger: '.sesiones__datos', start: 'top 85%', once: true } }
         );
 
-        // ── 4. CARLA: credenciales (siempre corre) ───────────────────────────
+        // ════════════════════════════════════════════════════
+        // PARA QUIÉN — cards
+        // ════════════════════════════════════════════════════
+        gsap.fromTo('.para-quien__card',
+          { opacity: 0, y: rm ? 0 : 40, scale: rm ? 1 : 0.96 },
+          { opacity: 1, y: 0, scale: 1, duration: d * 0.85, stagger: d * 0.2, ease: 'power3.out',
+            scrollTrigger: { trigger: '.para-quien__grid', start: 'top 80%', once: true } }
+        );
+
+        // ════════════════════════════════════════════════════
+        // CARLA — nombre + bajada + credenciales + cierre
+        // ════════════════════════════════════════════════════
+        gsap.from('.carla__nombre', {
+          opacity: 0, y: rm ? 0 : 28, duration: d * 0.85, ease: 'power3.out',
+          scrollTrigger: { trigger: '.carla__nombre', start: 'top 80%', once: true }
+        });
+        gsap.from('.carla__bajada', {
+          opacity: 0, y: rm ? 0 : 18, duration: d * 0.7, ease: 'power2.out', delay: rm ? 0 : d * 0.1,
+          scrollTrigger: { trigger: '.carla__bajada', start: 'top 82%', once: true }
+        });
         gsap.from('.carla__credenciales li', {
-          opacity: 0, x: prefersReducedMotion ? 0 : -14, duration: dur * 0.5, stagger: dur * 0.09, ease: 'power2.out',
+          opacity: 0, x: rm ? 0 : -28, duration: d * 0.55, stagger: d * 0.1, ease: 'power3.out',
           scrollTrigger: { trigger: '.carla__credenciales', start: 'top 80%', once: true }
         });
+        gsap.from('.carla__cierre', {
+          opacity: 0, y: rm ? 0 : 20, duration: d * 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: '.carla__cierre', start: 'top 85%', once: true }
+        });
+        gsap.from('.carla__foto', {
+          opacity: 0, scale: rm ? 1 : 0.93, duration: d * 1.0, ease: 'power3.out',
+          scrollTrigger: { trigger: '.carla__foto', start: 'top 80%', once: true }
+        });
 
-        // ── 5. CTA FINAL (siempre corre) ─────────────────────────────────────
+        // ════════════════════════════════════════════════════
+        // CTA FINAL
+        // ════════════════════════════════════════════════════
+        gsap.from('.cta-final__label', {
+          opacity: 0, y: rm ? 0 : 16, duration: d * 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: '.cta-final', start: 'top 72%', once: true }
+        });
         gsap.from('.cta-final h2', {
-          opacity: 0, scale: prefersReducedMotion ? 1 : 0.96, y: prefersReducedMotion ? 0 : 20,
-          duration: dur * 1.0, ease: 'power3.out',
-          scrollTrigger: { trigger: '.cta-final', start: 'top 68%', once: true }
+          opacity: 0, y: rm ? 0 : 40, scale: rm ? 1 : 0.94, duration: d * 1.0, ease: 'power4.out',
+          scrollTrigger: { trigger: '.cta-final', start: 'top 70%', once: true }
         });
         gsap.from('.cta-final .btn', {
-          opacity: 0, y: prefersReducedMotion ? 0 : 14, duration: dur * 0.7, ease: 'power2.out',
-          scrollTrigger: { trigger: '.cta-final', start: 'top 60%', once: true }
+          opacity: 0, y: rm ? 0 : 22, scale: rm ? 1 : 0.93, duration: d * 0.75, ease: 'back.out(1.3)',
+          scrollTrigger: { trigger: '.cta-final', start: 'top 62%', once: true }
+        });
+        gsap.from('.cta-final__microcopy', {
+          opacity: 0, y: rm ? 0 : 14, duration: d * 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: '.cta-final', start: 'top 58%', once: true }
         });
 
-        if (!prefersReducedMotion) {
-        // ── 6. Solo si hay movimiento OK: parallax + loops ───────────────────
-
-        gsap.to('.hero__deco', {
-          scale: 1.06, duration: 6,
-          ease: 'sine.inOut', yoyo: true, repeat: -1,
-          transformOrigin: 'center center'
-        });
-
-        gsap.from('.puente__titular', {
-          opacity: 0, y: 32, duration: 1.0, ease: 'power2.out',
-          scrollTrigger: { trigger: '.puente', start: 'top 60%', once: true }
-        });
-        gsap.to('.puente__marca', {
-          y: '-22%', ease: 'none',
-          scrollTrigger: { trigger: '.puente', start: 'top bottom', end: 'bottom top', scrub: 1.2 }
-        });
-        gsap.to('.carla__marca', {
-          y: '-18%', ease: 'none',
-          scrollTrigger: { trigger: '.carla', start: 'top bottom', end: 'bottom top', scrub: 1.5 }
-        });
-        gsap.to('.carla__foto', {
-          y: '-28px', ease: 'none',
-          scrollTrigger: { trigger: '.carla', start: 'top bottom', end: 'bottom top', scrub: 1.8 }
-        });
-
-        } // end if !prefersReducedMotion
+        // ════════════════════════════════════════════════════
+        // SOLO SIN REDUCED-MOTION: parallax + loops infinitos
+        // ════════════════════════════════════════════════════
+        if (!rm) {
+          gsap.to('.hero__deco', { scale: 1.06, duration: 7, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: 'center center' });
+          gsap.from('.puente__titular', { opacity: 0, y: 40, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.puente', start: 'top 62%', once: true } });
+          gsap.to('.puente__marca',  { y: '-22%', ease: 'none', scrollTrigger: { trigger: '.puente', start: 'top bottom', end: 'bottom top', scrub: 1.2 } });
+          gsap.to('.carla__marca',   { y: '-18%', ease: 'none', scrollTrigger: { trigger: '.carla',  start: 'top bottom', end: 'bottom top', scrub: 1.5 } });
+          gsap.to('.carla__foto-wrap',{ y: '-24px', ease: 'none', scrollTrigger: { trigger: '.carla', start: 'top bottom', end: 'bottom top', scrub: 1.8 } });
+        }
       }
     } catch(e) { console.log('GSAP no disponible, sin animaciones'); }
   </script>
