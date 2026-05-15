@@ -513,6 +513,14 @@
       padding-top: 1.25rem;
       border-top: 1px solid rgba(250, 246, 240, 0.12);
     }
+    .sesiones__boleta {
+      width: 100%;
+      display: flex; align-items: flex-start; justify-content: center;
+      gap: 0.4rem;
+      font-size: 0.775rem; color: rgba(250, 246, 240, 0.5);
+      line-height: 1.55; text-align: center;
+      max-width: 440px; margin: 0.1rem auto 0;
+    }
 
     /* PARA QUIÉN */
     .para-quien { background: var(--color-crema-warm); padding: var(--section-pad) 0; }
@@ -975,10 +983,16 @@
           <span class="dato__valor">Online</span>
         </div>
         <div class="dato dato--precio">
-          <span class="dato__label">Inversión</span>
-          <span class="dato__valor">$150.000 CLP</span>
+          <span class="dato__label">Precio</span>
+          <span class="dato__valor">$200.000 CLP</span>
         </div>
         <p class="sesiones__pago">50% al agendar · 50% antes de la devolución</p>
+        <p class="sesiones__boleta">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" style="flex-shrink:0;margin-top:2px">
+            <path d="M1.5 6L4.5 9L10.5 3" stroke="#EA8672" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Se entrega boleta de honorarios, reembolsable en isapre y seguros complementarios.
+        </p>
       </div>
     </div>
   </section>
@@ -1210,6 +1224,10 @@
           { opacity: 1, y: 0, duration: d * 0.6, stagger: d * 0.1, ease: 'power2.out',
             scrollTrigger: { trigger: '.sesiones__datos', start: 'top 85%', once: true } }
         );
+        gsap.from('.sesiones__boleta', {
+          opacity: 0, y: rm ? 0 : 10, duration: d * 0.7, ease: 'power2.out', delay: rm ? 0 : d * 0.35,
+          scrollTrigger: { trigger: '.sesiones__datos', start: 'top 82%', once: true }
+        });
 
         // ════════════════════════════════════════════════════
         // PARA QUIÉN — cards
