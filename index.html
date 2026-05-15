@@ -218,10 +218,23 @@
     .hero__cuerpo {
       font-size: 1.0625rem; line-height: 1.7;
       color: var(--color-texto-suave);
-      max-width: 580px; margin-bottom: 2.5rem;
+      max-width: 580px; margin-bottom: 0.75rem;
+    }
+    .hero__cuerpo--hook {
+      font-size: 1.125rem; font-weight: 500;
+      color: var(--color-texto); line-height: 1.65;
+    }
+    .hero__divider {
+      border: none;
+      width: 28px; height: 2px;
+      background: var(--color-coral);
+      border-radius: 2px;
+      margin: 1.1rem 0;
+      opacity: 0;
     }
     .hero__cta-group {
       display: flex; flex-direction: column; gap: 0.875rem; align-items: flex-start;
+      margin-top: 1.75rem;
     }
     .hero__microcopy {
       font-size: 0.875rem; color: var(--color-texto-muted); letter-spacing: 0.02em;
@@ -811,7 +824,8 @@
 
       <p class="hero__quote">Antes de decidir si tu hijo necesita terapia, partamos por entender qué está pasando.</p>
 
-      <p class="hero__cuerpo">Tu hijo/a cambió. Habla menos, se encierra, se irrita por todo. Y tú no sabes si acercarte, esperar o preocuparte.</p>
+      <p class="hero__cuerpo hero__cuerpo--hook">Tu hijo/a cambió. Habla menos, se encierra, se irrita por todo. Y tú no sabes si acercarte, esperar o preocuparte.</p>
+      <hr class="hero__divider" aria-hidden="true">
       <p class="hero__cuerpo">No necesitas otra lista de consejos de crianza. Necesitas entender qué está pasando entre ustedes —y qué puedes hacer tú, desde ya, para volver a ser una presencia segura en su vida.</p>
       <p class="hero__cuerpo">En 3 sesiones, te ayudo a leer qué está viviendo tu hijo o hija, qué bloquea la confianza en casa, y qué pasos concretos puedes dar para volver a acercarte.</p>
 
@@ -1135,6 +1149,7 @@
         gsap.set('.hero__line',      { y: rm ? '0%' : '110%' });
         gsap.set('.hero__quote',     { opacity: 0, x: rm ? 0 : -20 });
         gsap.set('.hero__cuerpo',    { opacity: 0, y: rm ? 0 : 22 });
+        gsap.set('.hero__divider',   { opacity: 0, scaleX: rm ? 1 : 0, transformOrigin: 'left center' });
         gsap.set('.hero__cta-group', { opacity: 0, y: rm ? 0 : 18, scale: rm ? 1 : 0.96 });
         gsap.set('.hero__deco',      { opacity: 0, scale: rm ? 1 : 1.1 });
 
@@ -1144,7 +1159,8 @@
           .to('.hero__badge',     { opacity: 1, x: 0, scale: 1, duration: d * 0.7 }, rm ? 0 : 0.1)
           .to('.hero__line',      { y: '0%', duration: d * 1.1, stagger: d * 0.22, ease: 'power4.out' }, rm ? 0 : 0.3)
           .to('.hero__quote',     { opacity: 1, x: 0, duration: d * 0.8 }, rm ? 0 : `-=${d * 0.3}`)
-          .to('.hero__cuerpo',    { opacity: 1, y: 0, duration: d * 0.7 }, rm ? 0 : `-=${d * 0.5}`)
+          .to('.hero__cuerpo',    { opacity: 1, y: 0, duration: d * 0.7, stagger: d * 0.12 }, rm ? 0 : `-=${d * 0.5}`)
+          .to('.hero__divider',   { opacity: 0.7, scaleX: 1, duration: d * 0.5, ease: 'power2.out' }, rm ? 0 : `-=${d * 0.55}`)
           .to('.hero__cta-group', { opacity: 1, y: 0, scale: 1, duration: d * 0.65 }, rm ? 0 : `-=${d * 0.45}`);
 
         // ════════════════════════════════════════════════════
