@@ -929,19 +929,59 @@
     }
 
     @media (max-width: 640px) {
-      :root {
-        --section-pad: 2rem;
-      }
+      :root { --section-pad: 2rem; }
+
+      /* Títulos con SVG — evitar overflow en mobile */
+      .titular__mark { white-space: normal; }
+      .sh-mark { white-space: normal; }
+      .cta-noche { white-space: normal; }
+      .faq__titulo .t-anchor { white-space: normal; }
+
+      /* Hero */
+      .hero__titular { font-size: clamp(2.25rem, 9vw, 3.5rem); }
+
+      /* Pensamientos */
       .pensamientos__grid { gap: 0.875rem; }
+      .pensamientos__principal { margin-bottom: 2rem; padding: 0 1rem; }
+
+      /* Por dónde empezar (puente) */
+      .puente__cuerpo { font-size: 0.9375rem; margin-top: 1.25rem; }
+      .puente__tagline { font-size: 0.875rem; }
+
+      /* Qué obtienes */
       .por-que__grid { gap: 0.875rem; }
-      .sesiones__grid { gap: 0.875rem; }
-      .pensamientos__principal { margin-bottom: 2rem; }
+      .card-pq {
+        padding: 1.75rem 1.5rem;
+        border-radius: 12px;
+        border-left-width: 3px;
+      }
+      .card-pq::after { font-size: 5rem; }
+
+      /* Section headers */
       .section-header { margin-bottom: 2rem; }
-      .sesiones__informe { padding: 1.5rem; gap: 1.25rem; }
-      .sesiones__datos { padding: 1.5rem; }
-      .card-pq { padding: 1.75rem 1.5rem; }
+
+      /* El proceso */
+      .sesiones__grid { gap: 0.875rem; }
+      .sesiones__informe { padding: 1.5rem; gap: 1.25rem; grid-template-columns: 1fr; text-align: center; }
+      .sesiones__informe-icon { margin: 0 auto; }
+      .sesiones__datos { padding: 1.5rem; gap: 1rem 2rem; }
       .card-sesion { padding: 1.75rem 1.5rem; }
-      .para-quien__card { padding: 1.75rem 1.5rem; }
+      .card-sesion__ghost { font-size: 5rem; }
+      .sesiones__bg-word { font-size: 14rem; right: -8%; bottom: -4%; }
+
+      /* Para quién */
+      .pq-panel { padding: 2rem 1.5rem; }
+
+      /* Sobre Carla */
+      .carla__cierre { padding-left: 1rem; }
+
+      /* FAQ */
+      .faq__question { padding: 1.25rem 0; font-size: 1rem; }
+      .faq__answer { padding-bottom: 1.25rem; }
+
+      /* CTA final */
+      .cta-final h2 { font-size: clamp(2rem, 8vw, 3rem); }
+      .cta-final__microcopy { font-size: 0.875rem; }
     }
 
     /* TITULAR HERO — tratamiento tipográfico */
