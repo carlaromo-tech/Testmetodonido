@@ -234,7 +234,7 @@
       line-height: 1.05; letter-spacing: -0.035em;
       text-wrap: balance;
       color: var(--color-navy);
-      margin-bottom: 2.5rem; max-width: 14ch;
+      margin-bottom: 2.5rem; max-width: 18ch;
     }
     .hero__titular::before {
       content: '';
@@ -283,9 +283,15 @@
 
     /* PENSAMIENTOS */
     .pensamientos {
-      background: var(--color-turquesa-pale);
+      background-color: var(--color-turquesa-pale);
+      background-image: radial-gradient(circle, rgba(62, 141, 161, 0.18) 1px, transparent 1px);
+      background-size: 24px 24px;
       padding: var(--section-pad) 0;
       position: relative; overflow: hidden;
+    }
+    .pensamientos__frase-wrap {
+      overflow: hidden;
+      padding-bottom: 0.08em;
     }
     .pensamientos__label {
       display: block;
@@ -337,23 +343,90 @@
     .pensamiento-card span { display: block; padding-top: 1.5rem; }
     @media (max-width: 768px) { .pensamientos__grid { grid-template-columns: 1fr; } }
 
+    .pensamientos__fuente {
+      font-family: var(--font-titular);
+      font-style: italic; font-weight: 400;
+      font-size: clamp(1.375rem, 2.8vw, 2rem);
+      line-height: 1.55;
+      color: var(--color-texto-suave);
+      max-width: 640px; margin: 0 auto;
+      text-align: center; letter-spacing: -0.015em;
+      text-wrap: balance;
+      padding-top: 3rem; margin-top: 3.5rem;
+      position: relative;
+    }
+    .pensamientos__fuente::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 36px; height: 2px;
+      background: var(--color-coral); border-radius: 2px;
+    }
+
     .pensamientos__cierre {
-      max-width: 700px; margin: 0 auto;
+      max-width: 620px; margin: 3.5rem auto 0;
       text-align: center; padding-top: 3rem;
       border-top: 1px solid rgba(62, 141, 161, 0.2);
     }
     .pensamientos__cierre p {
       font-family: var(--font-titular); font-weight: 400;
-      font-size: clamp(1.25rem, 2.2vw, 1.625rem);
-      line-height: 1.4; color: var(--color-navy); letter-spacing: -0.01em;
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      line-height: 1.6; color: var(--color-navy); letter-spacing: -0.01em;
+    }
+    .pensamientos__cierre em {
+      font-style: italic; color: var(--color-coral);
+    }
+
+    .pensamientos__frases {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .pensamientos__frase {
+      font-family: var(--font-titular);
+      font-style: italic;
+      letter-spacing: -0.025em;
+      display: block;
+      text-wrap: pretty;
+    }
+
+    /* Frase 1 — izquierda, liviana, suave */
+    .pensamientos__frase-wrap:nth-child(1) { text-align: left; }
+    .pensamientos__frase-wrap:nth-child(1) .pensamientos__frase {
+      font-size: clamp(1.625rem, 3.2vw, 2.375rem);
+      font-weight: 300; line-height: 1.35;
+      color: rgba(30, 45, 61, 0.62);
+    }
+
+    /* Frase 2 — derecha, peso medio, más presencia */
+    .pensamientos__frase-wrap:nth-child(2) { text-align: right; margin-top: 1.75rem; }
+    .pensamientos__frase-wrap:nth-child(2) .pensamientos__frase {
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-weight: 400; line-height: 1.25;
+      color: var(--color-navy);
+    }
+
+    /* Frase 3 — centro, grande, coral, el golpe final */
+    .pensamientos__frase-wrap:nth-child(3) { text-align: center; margin-top: 2.25rem; }
+    .pensamientos__frase-wrap:nth-child(3) .pensamientos__frase {
+      font-size: clamp(2.75rem, 5.5vw, 4.25rem);
+      font-weight: 400; line-height: 1.15;
+      color: var(--color-coral);
     }
 
     /* PUENTE */
     .puente {
-      background: var(--color-navy);
+      background:
+        radial-gradient(ellipse 85% 60% at 50% 0%, rgba(62, 141, 161, 0.22) 0%, transparent 62%),
+        var(--color-navy);
       padding: clamp(3rem, 7vw, 5.5rem) 0;
       position: relative; overflow: hidden;
     }
+    .puente::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--color-turquesa) 30%, var(--color-coral) 70%, transparent 100%);
+      z-index: 2;
+    }
+    .puente__acento { color: var(--color-coral); }
     .puente__marca {
       position: absolute; right: -8%; bottom: -20%;
       font-family: var(--font-titular); font-weight: 400;
@@ -380,17 +453,42 @@
     .puente__cuerpo {
       font-family: var(--font-cuerpo); font-weight: 300;
       font-size: 1rem; line-height: 1.8;
-      color: rgba(250, 246, 240, 0.68);
+      color: rgba(250, 246, 240, 0.82);
       max-width: 660px; margin: 1.75rem auto 0;
       text-align: center;
     }
+    .puente__pillars {
+      display: flex; justify-content: center;
+      gap: 0.875rem; flex-wrap: wrap;
+      margin: 2.75rem auto 0; max-width: 860px;
+    }
+    .puente__pillar {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 0.9rem 1.75rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(62, 141, 161, 0.45);
+      border-radius: 999px;
+      font-size: 1rem; font-weight: 400;
+      color: rgba(250, 246, 240, 0.92);
+      letter-spacing: 0.01em;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    }
+    .puente__pillar-dot {
+      width: 6px; height: 6px;
+      background: var(--color-coral); border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .puente__cta {
+      display: flex; justify-content: center;
+      margin-top: 2.5rem;
+    }
     .puente__tagline {
       font-family: var(--font-titular); font-style: italic; font-weight: 400;
-      font-size: 0.9375rem; line-height: 1.55;
-      color: rgba(250, 246, 240, 0.45);
-      max-width: 540px; margin: 1.25rem auto 0;
+      font-size: clamp(1.25rem, 2.2vw, 1.625rem); line-height: 1.55;
+      color: rgba(250, 246, 240, 0.75);
+      max-width: 620px; margin: 2rem auto 0;
       text-align: center;
-      padding-top: 1.25rem;
+      padding-top: 2rem;
       border-top: 1px solid rgba(234, 134, 114, 0.2);
     }
 
@@ -471,10 +569,16 @@
 
     .por-que__cierre {
       font-family: var(--font-titular); font-style: italic; font-weight: 400;
-      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-size: clamp(1.125rem, 2.2vw, 1.5rem);
       color: var(--color-texto-suave);
-      text-align: center; max-width: 680px;
-      margin: 0 auto 2rem; line-height: 1.6;
+      text-align: center; max-width: 640px;
+      margin: 2.5rem auto 2rem; line-height: 1.65;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(62, 141, 161, 0.2);
+    }
+    .por-que__cierre em {
+      display: block; margin-top: 0.35rem;
+      font-style: italic; color: var(--color-coral);
     }
     .card-pq--final {
       background: var(--color-navy);
@@ -828,9 +932,10 @@
     .cta-final__label {
       display: block;
       font-size: 0.75rem; font-weight: 600;
-      color: var(--color-crema);
+      color: var(--color-coral);
       letter-spacing: 0.3em; text-transform: uppercase;
-      margin-bottom: 1.5rem; opacity: 0.85;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.3);
     }
     .cta-final h2 {
       font-family: var(--font-titular); font-weight: 400; font-style: normal;
@@ -843,6 +948,7 @@
     .cta-noche {
       font-style: italic; font-weight: 300;
       position: relative; display: inline-block;
+      color: rgba(255, 235, 185, 1);
     }
     .cta-noche svg {
       position: absolute; left: -1%; width: 102%;
@@ -946,7 +1052,6 @@
 
       /* Por dónde empezar (puente) */
       .puente__cuerpo { font-size: 0.9375rem; margin-top: 1.25rem; }
-      .puente__tagline { font-size: 0.875rem; }
 
       /* Qué obtienes */
       .por-que__grid { gap: 0.875rem; }
@@ -1135,11 +1240,11 @@
       </div>
 
       <h1 class="hero__titular">
-        <span class="hero__line-wrap"><span class="hero__line line--light">Si algo le pasa <span class="titular__mark">de verdad,<svg viewBox="0 0 200 9" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none"><path d="M2 7C45 2 110 1 198 5" stroke="#EA8672" stroke-width="2.8" stroke-linecap="round"/></svg></span></span></span>
-        <span class="hero__line-wrap"><span class="hero__line line--question">¿te lo va a contar <em>a ti</em>?</span></span>
+        <span class="hero__line-wrap"><span class="hero__line line--light">Antes era <span class="titular__mark">cercano.<svg viewBox="0 0 200 9" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none"><path d="M2 7C45 2 110 1 198 5" stroke="#EA8672" stroke-width="2.8" stroke-linecap="round"/></svg></span></span></span>
+        <span class="hero__line-wrap"><span class="hero__line line--question">Ahora dice <em>"bien"</em> y se encierra.</span></span>
       </h1>
 
-      <p class="hero__quote">Antes era cercano. Ahora dice "bien" y se encierra. No sabes si es la edad o algo más — y esa duda es justo lo que viniste a resolver.</p>
+      <p class="hero__quote">No sabes si es la edad o algo más — y si algo pasa de verdad, no estás seguro de que te lo cuente a ti.</p>
 
       <div class="hero__cta-group">
         <a href="https://tally.so/r/LZvklp" target="_blank" rel="noopener" class="btn btn--primary btn--large">
@@ -1155,22 +1260,22 @@
     <div class="container">
       <span class="pensamientos__label">Tal vez te suena</span>
 
-      <p class="pensamientos__principal">Antes me contaba todo. Ahora le pregunto cómo le fue y solo dice 'bien'.</p>
-
-      <div class="pensamientos__grid">
-        <div class="pensamiento-card">
-          <span>Vive encerrado en su pieza con audífonos puestos. No sé si es la edad o algo más.</span>
+      <div class="pensamientos__frases">
+        <div class="pensamientos__frase-wrap">
+          <p class="pensamientos__frase">Tu hijo ya no te habla.</p>
         </div>
-        <div class="pensamiento-card">
-          <span>Pasa horas en sus redes y no sé con quién habla cuando está encerrado.</span>
+        <div class="pensamientos__frase-wrap">
+          <p class="pensamientos__frase">Ya no te cuenta lo que le pasa.</p>
         </div>
-        <div class="pensamiento-card">
-          <span>Me da miedo que esté pasando algo importante y yo me esté enterando al final.</span>
+        <div class="pensamientos__frase-wrap">
+          <p class="pensamientos__frase pensamientos__frase--final">Cada día se aleja un poco más.</p>
         </div>
       </div>
 
+      <p class="pensamientos__fuente">Y tú no sabes si es la edad, una pelea con amigos, o algo más serio.</p>
+
       <div class="pensamientos__cierre">
-        <p>No estás fallando. Estás en una etapa que nadie te enseñó a navegar — y la duda que tienes ahora es exactamente la razón por la que este diagnóstico existe.</p>
+        <p>No estás fallando. Es una etapa que nadie te enseñó a navegar — y la duda que tienes ahora se puede resolver. <em>Pero empieza por entenderla.</em></p>
       </div>
     </div>
   </section>
@@ -1179,8 +1284,23 @@
     <div class="puente__marca" aria-hidden="true">nido</div>
     <div class="container">
       <span class="puente__label">Por dónde empezar</span>
-      <h2 class="puente__titular">Antes de saber qué hacer, primero hay que saber qué está pasando.</h2>
-      <p class="puente__cuerpo">La Evaluación Familiar del Adolescente es un proceso clínico breve, de 3 sesiones, que te muestra cómo está hoy tu hijo o hija, qué está bloqueando la confianza en casa, y qué pasos concretos puedes dar para abrir esa puerta — antes de que la necesites con urgencia.</p>
+      <h2 class="puente__titular">Antes de saber qué hacer, primero hay que saber <span class="puente__acento">qué está pasando.</span></h2>
+
+      <div class="puente__pillars">
+        <span class="puente__pillar"><span class="puente__pillar-dot"></span>Qué está sintiendo hoy</span>
+        <span class="puente__pillar"><span class="puente__pillar-dot"></span>Qué bloquea la confianza en casa</span>
+        <span class="puente__pillar"><span class="puente__pillar-dot"></span>Qué pasos concretos dar</span>
+      </div>
+
+      <p class="puente__cuerpo">La Evaluación Familiar del Adolescente es un proceso clínico breve, de 3 sesiones, diseñado para entregarte ese mapa — antes de que lo necesites con urgencia.</p>
+
+      <div class="puente__cta">
+        <a href="https://tally.so/r/LZvklp" target="_blank" rel="noopener" class="btn btn--glass btn--large">
+          Empieza por el test gratuito (3 minutos)
+          <span class="btn__arrow">→</span>
+        </a>
+      </div>
+
       <p class="puente__tagline">Una mirada profesional a lo que está pasando entre ustedes, y pasos concretos para avanzar.</p>
     </div>
   </section>
@@ -1288,7 +1408,7 @@
             </svg>
           </div>
           <h3 class="card-pq__title">Saber si necesita acompañamiento adicional o no</h3>
-          <p class="card-pq__text">Una de las preguntas que más pesa: ¿esto se resuelve en casa o necesita psicólogo? Al terminar el proceso tienes una respuesta clara, con criterio clínico, no una corazonada.</p>
+          <p class="card-pq__text">Una de las preguntas que más pesa: ¿esto se resuelve en casa o necesita psicólogo? Al terminar el proceso tienes una respuesta clara, con criterio clínico.</p>
         </article>
 
         <article class="card-pq" data-num="03">
@@ -1333,6 +1453,8 @@
           <p class="card-pq__text">Sales con un plan personalizado, frases concretas para usar en casa, y orientación adaptada a la edad de tu hijo o hija. No teoría: pasos que puedes aplicar mañana.</p>
         </article>
       </div>
+
+      <p class="por-que__cierre">Todo esto queda por escrito en un informe de 4 a 6 páginas. <em>Tuyo, para volver cuando lo necesites.</em></p>
 
     </div>
   </section>
@@ -1407,7 +1529,7 @@
         </div>
         <div class="dato dato--precio">
           <span class="dato__label">Precio</span>
-          <span class="dato__valor">$200.000 CLP</span>
+          <span class="dato__valor">$160.000 CLP</span>
         </div>
         <p class="sesiones__pago">50% al agendar · 50% antes de la devolución</p>
         <p class="sesiones__boleta">
@@ -1479,7 +1601,7 @@
             <li>Certificación Programa Desarrollo de Habilidades Sociales PEERS</li>
             <li>Creadora del Método NIDO®</li>
           </ul>
-          <p class="carla__cierre">"Diseñé esta evaluación porque llevo años viendo familias llegar tarde — cuando ya hay un diagnóstico psiquiátrico o un episodio grave. Esto existe para que no tengas que esperar a eso."</p>
+          <p class="carla__cierre">"Diseñé esta evaluación para que no tengas que esperar — porque llevo años viendo familias llegar cuando ya hay un diagnóstico psiquiátrico o un episodio grave. Esto existe para llegar a tiempo."</p>
         </div>
       </div>
     </div>
@@ -1510,7 +1632,7 @@
             <span class="faq__chevron" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </button>
           <div class="faq__body"><div class="faq__body-inner">
-            <p class="faq__answer">Sí. La sesión con tu hijo o hija es el corazón del proceso — sin ella no puedo entregarte una lectura clínica completa. Si hay resistencia inicial, lo conversamos en la primera sesión y trabajamos cómo plantearlo. Es muy raro que un adolescente se niegue cuando entiende qué es y qué no es este espacio.</p>
+            <p class="faq__answer">Sí. La sesión con tu hijo o hija es el corazón del proceso — sin ella no puedo entregarte una lectura clínica completa. Si hay resistencia inicial, lo conversamos en la primera sesión y trabajamos cómo plantearlo. La forma de presentarle el proceso al adolescente es parte de mi trabajo, no del tuyo.</p>
           </div></div>
         </div>
 
@@ -1541,7 +1663,7 @@
   <section class="cta-final" id="test">
     <div class="container">
       <span class="cta-final__label">El primer paso</span>
-      <h2>Da el primer paso<br><span class="cta-noche">esta noche.<svg viewBox="0 0 260 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none"><path d="M2 7C55 2 160 1 258 5" stroke="rgba(250,246,240,0.5)" stroke-width="2.5" stroke-linecap="round"/></svg></span></h2>
+      <h2>Da el primer paso<br><span class="cta-noche">esta noche.<svg viewBox="0 0 260 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="none"><path d="M2 7C55 2 160 1 258 5" stroke="#EA8672" stroke-width="2.8" stroke-linecap="round"/></svg></span></h2>
       <p class="cta-final__sincpromiso">Sin compromiso</p>
       <a href="https://tally.so/r/LZvklp" target="_blank" rel="noopener" class="btn btn--navy btn--large">
         Empieza por el test gratuito (3 minutos)
@@ -1635,18 +1757,24 @@
           opacity: 0, y: rm ? 0 : 16, duration: d * 0.6, ease: 'power3.out',
           scrollTrigger: { trigger: '.pensamientos', start: 'top 78%', once: true }
         });
-        gsap.from('.pensamientos__principal', {
-          opacity: 0, y: rm ? 0 : 36, scale: rm ? 1 : 0.97, duration: d * 1.0, ease: 'power3.out',
-          scrollTrigger: { trigger: '.pensamientos__principal', start: 'top 80%', once: true }
+        if (rm) {
+          gsap.from('.pensamientos__frase', {
+            opacity: 0, duration: d * 0.9, stagger: d * 0.25, ease: 'power3.out',
+            scrollTrigger: { trigger: '.pensamientos__frases', start: 'top 80%', once: true }
+          });
+        } else {
+          gsap.from('.pensamientos__frase', {
+            yPercent: 115, duration: d * 1.1, stagger: d * 0.35, ease: 'power4.out',
+            scrollTrigger: { trigger: '.pensamientos__frases', start: 'top 78%', once: true }
+          });
+        }
+        gsap.from('.pensamientos__fuente', {
+          opacity: 0, y: rm ? 0 : 24, duration: d * 0.85, ease: 'power3.out',
+          scrollTrigger: { trigger: '.pensamientos__fuente', start: 'top 84%', once: true }
         });
-        gsap.fromTo('.pensamiento-card',
-          { opacity: 0, y: rm ? 0 : 48, scale: rm ? 1 : 0.94 },
-          { opacity: 1, y: 0, scale: 1, duration: d * 0.85, stagger: d * 0.18, ease: 'power3.out',
-            scrollTrigger: { trigger: '.pensamientos__grid', start: 'top 82%', once: true } }
-        );
         gsap.from('.pensamientos__cierre p', {
           opacity: 0, y: rm ? 0 : 20, duration: d * 0.8, ease: 'power2.out',
-          scrollTrigger: { trigger: '.pensamientos__cierre', start: 'top 85%', once: true }
+          scrollTrigger: { trigger: '.pensamientos__cierre', start: 'top 86%', once: true }
         });
 
         // ════════════════════════════════════════════════════
@@ -1769,6 +1897,8 @@
         if (!rm) {
           gsap.to('.hero__deco', { scale: 1.06, duration: 7, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: 'center center' });
           gsap.from('.puente__titular', { opacity: 0, y: 40, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.puente', start: 'top 62%', once: true } });
+          gsap.from('.puente__pillar', { opacity: 0, y: 20, scale: 0.92, duration: d * 0.7, stagger: d * 0.15, ease: 'back.out(1.2)', scrollTrigger: { trigger: '.puente__pillars', start: 'top 75%', once: true } });
+          gsap.from('.puente__cta', { opacity: 0, y: 18, duration: d * 0.7, ease: 'power2.out', scrollTrigger: { trigger: '.puente__cta', start: 'top 82%', once: true } });
           gsap.to('.puente__marca',  { y: '-22%', ease: 'none', scrollTrigger: { trigger: '.puente', start: 'top bottom', end: 'bottom top', scrub: 1.2 } });
           gsap.to('.carla__marca',   { y: '-18%', ease: 'none', scrollTrigger: { trigger: '.carla',  start: 'top bottom', end: 'bottom top', scrub: 1.5 } });
           gsap.to('.carla__foto-wrap',{ y: '-24px', ease: 'none', scrollTrigger: { trigger: '.carla', start: 'top bottom', end: 'bottom top', scrub: 1.8 } });
