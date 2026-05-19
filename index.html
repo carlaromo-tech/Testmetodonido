@@ -1725,8 +1725,14 @@
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
           smoothWheel: true,
         });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
+        if (typeof gsap !== 'undefined') {
+          lenis.on('scroll', ScrollTrigger.update);
+          gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+          gsap.ticker.lagSmoothing(0);
+        } else {
+          function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+          requestAnimationFrame(raf);
+        }
       }
     } catch(e) { console.log('Lenis no disponible, scroll nativo'); }
 
@@ -1782,17 +1788,23 @@
           opacity: 0, y: rm ? 0 : 16, duration: d * 0.6, ease: 'power3.out',
           scrollTrigger: { trigger: '.pensamientos', start: 'top 78%', once: true }
         });
-        if (rm) {
-          gsap.from('.pensamientos__frase', {
-            opacity: 0, duration: d * 0.9, stagger: d * 0.25, ease: 'power3.out',
-            scrollTrigger: { trigger: '.pensamientos__frases', start: 'top 80%', once: true }
-          });
-        } else {
-          gsap.from('.pensamientos__frase', {
-            yPercent: 115, duration: d * 1.1, stagger: d * 0.35, ease: 'power4.out',
-            scrollTrigger: { trigger: '.pensamientos__frases', start: 'top 78%', once: true }
-          });
-        }
+        gsap.utils.toArray('.pensamientos__frase').forEach((el, i) => {
+          gsap.fromTo(el,
+            { yPercent: rm ? 0 : 115, opacity: rm ? 0 : 1 },
+            {
+              yPercent: 0, opacity: 1,
+              duration: rm ? d * 0.9 : d * 1.1,
+              delay: i * (rm ? d * 0.25 : d * 0.35),
+              ease: rm ? 'power3.out' : 'power4.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 88%',
+                once: true,
+                invalidateOnRefresh: true,
+              }
+            }
+          );
+        });
         gsap.from('.pensamientos__fuente', {
           opacity: 0, y: rm ? 0 : 24, duration: d * 0.85, ease: 'power3.out',
           scrollTrigger: { trigger: '.pensamientos__fuente', start: 'top 84%', once: true }
