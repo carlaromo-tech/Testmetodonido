@@ -814,6 +814,21 @@
       font-size: 0.9375rem; line-height: 1.72;
       color: var(--color-texto-suave); flex: 1;
     }
+    .pq-panel__list {
+      font-size: 0.9375rem; line-height: 1.72;
+      color: var(--color-texto-suave);
+      display: flex; flex-direction: column; gap: 0.75rem;
+      flex: 1;
+    }
+    .pq-panel__list li {
+      padding-left: 1.25rem; position: relative;
+    }
+    .pq-panel__list li::before {
+      content: '';
+      position: absolute; left: 0; top: 0.6em;
+      width: 6px; height: 6px;
+      background: var(--color-turquesa); border-radius: 50%;
+    }
     .pq-panel__email {
       display: inline-block;
       font-size: 0.875rem; font-weight: 500;
@@ -1562,7 +1577,13 @@
             </svg>
           </div>
           <h3 class="pq-panel__title">Sí es para ti si...</h3>
-          <p class="pq-panel__text">Para padres con hijos entre 10 y 18 años que notan cambios que no saben cómo leer: aislamiento, irritabilidad, distancia, conflictos recurrentes o señales que los tienen preocupados.</p>
+          <ul class="pq-panel__list">
+            <li>Tu hijo se cierra cuando intentas preguntar, y no sabes si insistir o dar espacio</li>
+            <li>Notas algo diferente en su humor o en cómo está — pero no tienes cómo nombrarlo</li>
+            <li>Hay conflictos que se repiten y cada conversación importante termina en pelea o en silencio</li>
+            <li>Te preguntas si lo que está viviendo es la adolescencia normal o algo que necesita atención</li>
+            <li>Sientes que se aleja y no sabes cómo acercarte sin que se cierre más</li>
+          </ul>
         </div>
 
         <div class="pq-panel pq-panel--limite">
@@ -1573,8 +1594,8 @@
               <circle cx="24" cy="33" r="1.5" fill="#EA8672"/>
             </svg>
           </div>
-          <h3 class="pq-panel__title">Importante</h3>
-          <p class="pq-panel__text">Este proceso no reemplaza atención de urgencia ni tratamiento especializado. Si en tu casa hay señales de riesgo inmediato — autolesiones, ideación suicida, violencia, abuso o consumo problemático — escríbeme y te oriento hacia la derivación adecuada.</p>
+          <h3 class="pq-panel__title">Cuándo este proceso no es el primer paso</h3>
+          <p class="pq-panel__text">Si en tu casa hay señales de riesgo inmediato — autolesiones, ideación suicida, violencia, abuso o consumo problemático — este proceso no es suficiente. Escríbeme y te oriento hacia la ayuda adecuada para tu situación.</p>
           <a href="mailto:carla.romo@conectarconsentido.com" class="pq-panel__email">carla.romo@conectarconsentido.com</a>
         </div>
       </div>
